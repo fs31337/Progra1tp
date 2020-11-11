@@ -9,7 +9,7 @@ public class Juego extends InterfaceJuego
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	Conejo Conejo;
-	
+	Auto Auto;
 	// Variables y métodos propios de cada grupo
 	// ...
 
@@ -20,6 +20,7 @@ public class Juego extends InterfaceJuego
 		
 		// Inicializar lo que haga falta para el juego
 		this.Conejo = new Conejo(400,450,20);
+		this.Auto = new Auto(0,300);
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -36,12 +37,13 @@ public class Juego extends InterfaceJuego
 		// Procesamiento de un instante de tiempo
 		// ...
 		dibujandoConejo();
-
+		//pruebo Movimiento de auto
+		dibujandoAuto();
+		
 	}
 	
 	void dibujandoConejo() {
 		Conejo.dibujarse(this.entorno);
-		this.Conejo.caerse();
 		
 		if (this.entorno.sePresiono(this.entorno.TECLA_ARRIBA))
 		{
@@ -55,7 +57,27 @@ public class Juego extends InterfaceJuego
 		{
 			this.Conejo.moverIzq();
 		}
+		if (this.Conejo.y>=600) {
+			
+		}
 	}
+	
+	void dibujandoAuto() {
+		Auto.dibujarse(this.entorno);
+		this.Auto.avanzar();
+		
+		if(this.Auto.x>=800) {
+			this.Auto.x=0;
+			this.Auto.caerse();
+			this.Conejo.caerse();
+		}
+		
+		if(this.Auto.y>=600) {
+			this.Auto.y=300;
+		}
+		
+	}
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args)
