@@ -10,7 +10,7 @@ public class Juego extends InterfaceJuego
 	private Entorno entorno;
 	Conejo Conejo;
 	
-	// Variables y m√©todos propios de cada grupo
+	// Variables y mÈtodos propios de cada grupo
 	// ...
 
 	Juego()
@@ -26,8 +26,8 @@ public class Juego extends InterfaceJuego
 	}
 
 	/**
-	 * Durante el juego, el m√©todo tick() ser√° ejecutado en cada instante y 
-	 * por lo tanto es el m√©todo m√°s importante de esta clase. Aqu√≠ se debe 
+	 * Durante el juego, el mÈtodo tick() ser· ejecutado en cada instante y 
+	 * por lo tanto es el mÈtodo m·s importante de esta clase. AquÌ se debe 
 	 * actualizar el estado interno del juego para simular el paso del tiempo 
 	 * (ver el enunciado del TP para mayor detalle).
 	 */
