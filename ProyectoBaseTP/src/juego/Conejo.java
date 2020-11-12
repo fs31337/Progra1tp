@@ -10,7 +10,7 @@ public class Conejo {
 	 double y;
 	 int diametro;
 	 double salto = 15;
-	 double cae = 10;
+	 double cae = 0.3;
 	
 	 Conejo(double x, double y, int diametro )
 	 {

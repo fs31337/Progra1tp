@@ -1,6 +1,8 @@
 package juego;
 
 
+import java.util.Random;
+
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -9,7 +11,11 @@ public class Juego extends InterfaceJuego
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	Conejo Conejo;
-	Auto Auto;
+	Auto[] autos;
+	Auto[] autos2;
+	Auto[] autos3;
+	Auto[] autos4;
+	
 	// Variables y métodos propios de cada grupo
 	// ...
 
@@ -20,7 +26,30 @@ public class Juego extends InterfaceJuego
 		
 		// Inicializar lo que haga falta para el juego
 		this.Conejo = new Conejo(400,450,20);
-		this.Auto = new Auto(0,300);
+		
+		this.autos = new Auto[5];
+		this.autos2 = new Auto[5];
+		this.autos3 = new Auto[5];
+		this.autos4 = new Auto[5];
+		
+		Random rnd = new Random();
+		
+		for (int i=0;i < this.autos.length;i++) {
+			int x = rnd.nextInt(this.entorno.ancho() - 20);
+			this.autos[i] = new Auto(x,300);
+			}
+		for (int i=0;i < this.autos2.length;i++) {
+			int x = rnd.nextInt(this.entorno.ancho() - 20);
+			this.autos2[i] = new Auto(x,100);
+			}
+		for (int i=0;i < this.autos3.length;i++) {
+			int x = rnd.nextInt(this.entorno.ancho() - 20);
+			this.autos3[i] = new Auto(x,200);
+			}
+		for (int i=0;i < this.autos4.length;i++) {
+			int x = rnd.nextInt(this.entorno.ancho() - 20);
+			this.autos4[i] = new Auto(x,400);
+			}
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -37,8 +66,9 @@ public class Juego extends InterfaceJuego
 		// Procesamiento de un instante de tiempo
 		// ...
 		dibujandoConejo();
-		//pruebo Movimiento de auto
-		dibujandoAuto();
+		dibujandoAutos();
+		this.Conejo.caerse();
+		
 		
 	}
 	
@@ -62,21 +92,81 @@ public class Juego extends InterfaceJuego
 		}
 	}
 	
-	void dibujandoAuto() {
-		Auto.dibujarse(this.entorno);
-		this.Auto.avanzar();
-		
-		if(this.Auto.x>=800) {
-			this.Auto.x=0;
-			this.Auto.caerse();
-			this.Conejo.caerse();
-		}
-		
-		if(this.Auto.y>=600) {
-			this.Auto.y=300;
-		}
-		
+	boolean llegoAlFondo(Auto autos) {
+		return autos.y > this.entorno.alto();
 	}
+	
+	boolean llegoALaDerecha(Auto autos) {
+		return autos.x > this.entorno.ancho();
+	}
+	
+	void dibujandoAutos() {
+		for (int i = 0; i < this.autos.length; i++) {
+			if (this.autos[i] != null) {
+				this.autos[i].dibujarse(this.entorno);
+				this.autos[i].avanzar();
+				
+				if (llegoALaDerecha(this.autos[i])){	
+					this.autos[i].caerse();
+					this.autos[i].x = 0;
+				}
+				
+				if (llegoAlFondo(this.autos[i])) {
+					this.autos[i].y = 300;
+				}
+			}
+		}
+		for (int i = 0; i < this.autos2.length; i++) {
+			if (this.autos2[i] != null) {
+				this.autos2[i].dibujarse(this.entorno);
+				this.autos2[i].avanzar();
+				
+				if (llegoALaDerecha(this.autos2[i])){	
+					this.autos2[i].caerse();
+					this.autos2[i].x = 0;
+				}
+				
+				if (llegoAlFondo(this.autos[i])) {
+					this.autos2[i].y = 300;
+				}
+			}
+		}
+		for (int i = 0; i < this.autos3.length; i++) {
+			if (this.autos3[i] != null) {
+				this.autos3[i].dibujarse(this.entorno);
+				this.autos3[i].avanzar();
+				
+				if (llegoALaDerecha(this.autos3[i])){	
+					this.autos3[i].caerse();
+					this.autos3[i].x = 0;
+				}
+				
+				if (llegoAlFondo(this.autos3[i])) {
+					this.autos3[i].y = 300;
+				}
+			}
+		}
+		for (int i = 0; i < this.autos4.length; i++) {
+			if (this.autos4[i] != null) {
+				this.autos4[i].dibujarse(this.entorno);
+				this.autos4[i].avanzar();
+				
+				if (llegoALaDerecha(this.autos4[i])){	
+					this.autos4[i].caerse();
+					this.autos4[i].x = 0;
+				}
+				
+				if (llegoAlFondo(this.autos4[i])) {
+					this.autos4[i].y = 300;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	
 
 	@SuppressWarnings("unused")
