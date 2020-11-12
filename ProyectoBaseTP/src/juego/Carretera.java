@@ -13,7 +13,7 @@ public class Carretera {
 		this.entorno=entorno;
 		this.x=entorno.ancho()/2;
 		this.y=y;
-		this.alto=100;
+		this.alto=50;
 		this.ancho=entorno.ancho();
 		this.sentido=sentido;
 	}
@@ -42,7 +42,7 @@ public class Carretera {
 		entorno.dibujarRectangulo(x, y, ancho, alto, 0, Color.blue);
 	}
 	private void avanzar() {
-		y+=0.5;
+		y+=0.2;
 	}
 	private void reiniciar() {
 		if(y>entorno.alto()+50) {

@@ -11,26 +11,28 @@ public class Auto {
 	private Carretera carretera;
 	private Conejo conejo;
 	private boolean vida;
+	private Kamehameha kamehameha;
 	
-	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,double velocidad) {
+	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,Kamehameha kamehameha,double velocidad) {
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.y=0;
 		this.x=0;
-		this.alto=50;
-		this.ancho=50;
+		this.alto=30;
+		this.ancho=30;
 		this.conejo=conejo;
 		this.velocidad=velocidad;
 		this.vida=true;
-		
+		this.kamehameha=kamehameha;
 	}
 	
 	public void iniciarComponentesEnTick() {
-		if(vida==true) {
+		if(this.vida) {
 			dibujarse();
 			avanzar();
 			resetear();
 			matarConejo();
+			destruirAuto();
 		}
 	}
 	public void iniciarComponentesFueraTick() {
@@ -88,6 +90,18 @@ public class Auto {
 	private void matarConejo() {
 		if(tocaConejo()) {
 			conejo.setVida(false);
+		}
+	}
+	private boolean tocaKamehameha() {
+		return this.x > kamehameha.getX() - (this.ancho*2) &&
+				this.x < kamehameha.getX() +(this.ancho*2) &&
+				this.y > kamehameha.getY() - (this.alto*2) &&
+				this.y < kamehameha.getY() + (this.alto*2);
+	}
+	private void destruirAuto() {
+		if(tocaKamehameha() && kamehameha.getActivo()) {
+			this.vida=false;
+			kamehameha.setActivo(false);
 		}
 	}
 }

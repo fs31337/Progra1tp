@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import entorno.*;
 
@@ -9,14 +11,16 @@ public class Conejo {
 	private int ancho,alto,velocidad;
 	private Entorno entorno;
 	private boolean vida;
+	private boolean espera;
 	
 	public Conejo(Entorno entorno) {
 		this.entorno=entorno;
-		this.ancho=40;
-		this.alto=40;
-		this.velocidad=20;
+		this.ancho=20;
+		this.alto=20;
+		this.velocidad=40;
 		this.angulo=Herramientas.radianes(270);
 		this.vida=true;
+		this.espera=false;
 	}
 	public double getX() {
 		return this.x;
@@ -53,20 +57,21 @@ public class Conejo {
 	public void inicarComponentesFueraTick() {
 		if (vida==true) {
 		establecerPos();
+		tiempoEspera();
 		}
 	}
 	private void moverAbajo() {
-		y+=0.3;
+		y+=0.2;
 	}
 	private void tocaLimite() {
 		if(this.y>entorno.alto()+30) {
 			this.vida=false;
 		}
 		if(this.x<0) {
-			x+=20;
+			x+=40;
 		}
 		if(this.x>entorno.ancho()) {
-			x-=20;
+			x-=40;
 		}
 	}
 	private void establecerPos() {
@@ -78,21 +83,40 @@ public class Conejo {
 		entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.red);
 	}
 	private void moverse() {
-		if(entorno.sePresiono('w')) {
-			y-=velocidad;
-			angulo=Herramientas.radianes(270);
-		}
-		if(entorno.sePresiono('a')) {
-			x-=velocidad;
-			angulo=Herramientas.radianes(180);
-		}
-		if(entorno.sePresiono('d')) {
-			x+=velocidad;
-			angulo=Herramientas.radianes(0);
-		}
-		if(entorno.sePresiono('s')) {
-			y+=velocidad;
-			angulo=Herramientas.radianes(90);
-		}
+		if(!espera) {
+			if(entorno.sePresiono('w')) {
+				y-=velocidad;
+				angulo=Herramientas.radianes(270);
+				espera=true;
+			}
+			if(entorno.sePresiono('a')) {
+				x-=velocidad;
+				angulo=Herramientas.radianes(180);
+				espera=true;
+			}
+			if(entorno.sePresiono('d')) {
+				x+=velocidad;
+				angulo=Herramientas.radianes(0);
+				espera=true;
+			}
+			if(entorno.sePresiono('s')) {
+				y+=velocidad;
+				angulo=Herramientas.radianes(90);
+				espera=true;
+			}
+	}
+	}
+	private void tiempoEspera() {
+		Timer tiempo=new Timer();
+		TimerTask tarea=new TimerTask() {
+
+			@Override
+			public void run() {
+				espera=false;
+				
+			}
+			
+		};
+		tiempo.schedule(tarea, 0,300);
 	}
 }

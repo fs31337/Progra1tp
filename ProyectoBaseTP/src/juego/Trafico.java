@@ -8,21 +8,23 @@ public class Trafico {
 	private Carretera carretera;
 	private Conejo conejo;
 	private double velocidad;
-	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,double velocidad) {
-		autos=new Auto[5];
+	private Kamehameha kamehameha;
+	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,Kamehameha kamehameha,double velocidad) {
+		autos=new Auto[3];
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.conejo=conejo;
 		this.velocidad=velocidad;
+		this.kamehameha=kamehameha;
 	}
-	public void crearAutos() {
+	private void crearAutos() {
 		for (int i=0;i<autos.length;i++) {
-			Auto auto=new Auto(entorno,carretera,conejo,velocidad);
+			Auto auto=new Auto(entorno,carretera,conejo,kamehameha,velocidad);
 			autos[i]=auto;
 		}
 		
 	}
-	public void posicionarAutos() {
+	private void posicionarAutos() {
 		double x=0;
 		for(Auto auto:autos) {
 			auto.setX(x);
@@ -30,6 +32,8 @@ public class Trafico {
 		}
 	}
 	public void iniciarComponentesFueraTick() {
+		crearAutos();
+		posicionarAutos();
 		for(Auto auto:autos) {
 			auto.iniciarComponentesFueraTick();
 		}

@@ -11,55 +11,68 @@ public class Kamehameha {
 	private boolean activo;
 	private Entorno entorno;
 	private Conejo conejo;
+	private int usos;
 	public Kamehameha(Entorno entorno,Conejo conejo) {
 		this.entorno=entorno;
 		this.x=0;
 		this.y=0;
-		this.ancho=50;
-		this.alto=50;
+		this.ancho=30;
+		this.alto=30;
 		this.activo=false;
 		this.angulo=Herramientas.radianes(270);
 		this.conejo=conejo;
+		this.usos=0;
 	}
+	public void setActivo(boolean activo) {
+		this.activo=activo;
+	}
+	public double getX() {
+		return this.x;
+	}
+	public double getY() {
+		return this.y;
+	}
+	public double getAncho() {
+		return this.ancho;
+	}
+	public double getAlto() {
+		return this.alto;
+	}
+	public boolean getActivo() {
+		return this.activo;
+	}
+	
 	public void iniciarComponentesFueraTick() {
-		tiempoKame();
+		
 	}
 	public void iniciarComponentesEnTick() {
-		activar();
-		posicionar();
+		
+			activar();
+			posicionar();
+		
 	}
 	private void posicionar() {
 		this.x=conejo.getX();
 		this.y=conejo.getY()-(alto/2);
+		
 	}
 	private void activar() {
 	
-		if(entorno.sePresiono(entorno.TECLA_ESPACIO)) {
-			this.activo=true;	
+		if(entorno.sePresiono(entorno.TECLA_ESPACIO) && activo==false && usos<=3) {
+			this.activo=true;
+			this.alto=50;
+			usos++;
 		}
 		if(activo==true) {
 			this.alto+=1.5;
 			dibujar();
 		}
 	}
-	private void tiempoKame() {
-		Timer tiempo=new Timer();
-		TimerTask tarea=new TimerTask() {
-
-			@Override
-			public void run() {
-				activo=false;
-				ancho=50;
-				alto=50;
-				
-			}
-		};
-		tiempo.schedule(tarea, 0,3000);
-		
-	}
+	
 	
 	private void dibujar() {
 		entorno.dibujarRectangulo(x, y, ancho, alto, 0, Color.cyan);
 	}
+	
 	
 }

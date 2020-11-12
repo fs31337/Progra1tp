@@ -11,11 +11,23 @@ public class Juego extends InterfaceJuego
 	
 	private Entorno entorno;
 	Conejo conejo;
-	Carretera carretera1;
+	Carretera carretera1; //mano derecha
 	Carretera carretera2;
+	Carretera carretera3;
+	Carretera carretera4;
+	Carretera carretera5; //mano izquierda
+	Carretera carretera6;
+	Carretera carretera7;
+	Carretera carretera8;
 	
-	Trafico autos;
+	Trafico autos1;
 	Trafico autos2;
+	Trafico autos3;
+	Trafico autos4;
+	Trafico autos5;
+	Trafico autos6;
+	Trafico autos7;
+	Trafico autos8;
 	
 	Kamehameha kamehameha;
 	Juego()
@@ -24,19 +36,28 @@ public class Juego extends InterfaceJuego
 		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo ... - v1", 800, 600);
 		this.conejo = new Conejo(entorno);
 		this.carretera1= new Carretera(entorno,"derecha",0); //Se crea una carretera, la cual pide un sentido y una posicion
-		this.carretera2= new Carretera(entorno,"izquierda",300);
-		this.autos = new Trafico(entorno,carretera1,conejo,1); //Se crea un arreglo de autos la cual toma una carretera (con su respectivo sentido), un conejo, y una velocidad
-		this.autos2 = new Trafico(entorno,carretera2,conejo,2);
+		this.carretera2= new Carretera(entorno,"derecha",30);
+		this.carretera3= new Carretera(entorno,"derecha",60);
+		this.carretera4= new Carretera(entorno,"derecha",90);
+		this.carretera5= new Carretera(entorno,"izquierda",300);
+		this.carretera6= new Carretera(entorno,"izquierda",330);
+		this.carretera7= new Carretera(entorno,"izquierda",360);
+		this.carretera8= new Carretera(entorno,"izquierda",390);
+		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
-		conejo.inicarComponentesFueraTick();//se inician los respectivos componentes
-		autos.crearAutos(); //se crea el arreglo de autos
-		autos.posicionarAutos(); //Se posiciona correctamete los autos
-		autos.iniciarComponentesFueraTick(); //se inician los respectivos componentes
-		autos2.crearAutos();
-		autos2.posicionarAutos();
-		autos2.iniciarComponentesFueraTick();
-		kamehameha.iniciarComponentesFueraTick();
+		this.autos1 = new Trafico(entorno,carretera1,conejo,kamehameha,2); //Se crea un arreglo de autos la cual toma una carretera (con su respectivo sentido), un conejo, y una velocidad
+		this.autos2 = new Trafico(entorno,carretera2,conejo,kamehameha,1.1);
+		this.autos3 = new Trafico(entorno,carretera3,conejo,kamehameha,0.8);
+		this.autos4 = new Trafico(entorno,carretera4,conejo,kamehameha,0.47);
+		this.autos5 = new Trafico(entorno,carretera5,conejo,kamehameha,2);
+		this.autos6 = new Trafico(entorno,carretera6,conejo,kamehameha,1.5);
+		this.autos7 = new Trafico(entorno,carretera7,conejo,kamehameha,0.7);
+		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,0.43);
+		
+		juegoActivoFueraTick();
+		
+		
 		
 		this.entorno.iniciar();
 	}
@@ -45,20 +66,42 @@ public class Juego extends InterfaceJuego
 	public void tick()
 	{
 		juegoActivoTick();
-		
-		
 
+	}
+	private void juegoActivoFueraTick() {
+		conejo.inicarComponentesFueraTick();//se inician los respectivos componentes
+		autos1.iniciarComponentesFueraTick(); //se inician los respectivos componentes
+		autos2.iniciarComponentesFueraTick();
+		autos3.iniciarComponentesFueraTick();
+		autos4.iniciarComponentesFueraTick();
+		autos5.iniciarComponentesFueraTick();
+		autos6.iniciarComponentesFueraTick();
+		autos7.iniciarComponentesFueraTick();
+		autos8.iniciarComponentesFueraTick();
 		
-
+		kamehameha.iniciarComponentesFueraTick();
 	}
 	private void juegoActivoTick() {
 		if(conejo.getVida()) {
 			carretera1.iniciarComponentesEnTick();
 			carretera2.iniciarComponentesEnTick();
+			carretera3.iniciarComponentesEnTick();
+			carretera4.iniciarComponentesEnTick();
+			carretera5.iniciarComponentesEnTick();
+			carretera6.iniciarComponentesEnTick();
+			carretera7.iniciarComponentesEnTick();
+			carretera8.iniciarComponentesEnTick();
 			conejo.iniciarComponentesEnTick();
-			autos.iniciarComponentesEnTick();
-			autos2.iniciarComponentesEnTick();
 			kamehameha.iniciarComponentesEnTick();
+			autos1.iniciarComponentesEnTick();
+			autos2.iniciarComponentesEnTick();
+			autos3.iniciarComponentesEnTick();
+			autos4.iniciarComponentesEnTick();
+			autos5.iniciarComponentesEnTick();
+			autos6.iniciarComponentesEnTick();
+			autos7.iniciarComponentesEnTick();
+			autos8.iniciarComponentesEnTick();
+			
 		}
 		else {
 			gameOver();
