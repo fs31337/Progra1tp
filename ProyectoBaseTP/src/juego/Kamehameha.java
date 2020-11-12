@@ -58,7 +58,7 @@ public class Kamehameha {
 	}
 	private void activar() {
 	
-		if(entorno.sePresiono(entorno.TECLA_ESPACIO) && activo==false && usos<=3) {
+		if(entorno.sePresiono(entorno.TECLA_ESPACIO) && activo==false && usos<3) {
 			this.activo=true;
 			this.alto=50;
 			usos++;

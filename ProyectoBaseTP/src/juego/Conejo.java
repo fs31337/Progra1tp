@@ -8,10 +8,11 @@ import entorno.*;
 
 public class Conejo {
 	private double x,y,angulo;
-	private int ancho,alto,velocidad;
+	private int ancho,alto,velocidad,puntaje;
 	private Entorno entorno;
 	private boolean vida;
 	private boolean espera;
+	
 	
 	public Conejo(Entorno entorno) {
 		this.entorno=entorno;
@@ -21,6 +22,10 @@ public class Conejo {
 		this.angulo=Herramientas.radianes(270);
 		this.vida=true;
 		this.espera=false;
+		this.puntaje=0;
+	}
+	public void sumarPuntaje(int puntaje) {
+		this.puntaje+=puntaje;
 	}
 	public double getX() {
 		return this.x;
@@ -52,6 +57,7 @@ public class Conejo {
 		moverse();
 		moverAbajo();
 		tocaLimite();
+		mostarPuntaje();
 		}
 	}
 	public void inicarComponentesFueraTick() {
@@ -88,6 +94,7 @@ public class Conejo {
 				y-=velocidad;
 				angulo=Herramientas.radianes(270);
 				espera=true;
+				puntaje++;
 			}
 			if(entorno.sePresiono('a')) {
 				x-=velocidad;
@@ -99,11 +106,7 @@ public class Conejo {
 				angulo=Herramientas.radianes(0);
 				espera=true;
 			}
-			if(entorno.sePresiono('s')) {
-				y+=velocidad;
-				angulo=Herramientas.radianes(90);
-				espera=true;
-			}
+			
 	}
 	}
 	private void tiempoEspera() {
@@ -118,5 +121,9 @@ public class Conejo {
 			
 		};
 		tiempo.schedule(tarea, 0,300);
+	}
+	private void mostarPuntaje() {
+		entorno.cambiarFont("Arial Black", 20, Color.white);
+		entorno.escribirTexto("Puntos: "+puntaje, 20, 20);
 	}
 }

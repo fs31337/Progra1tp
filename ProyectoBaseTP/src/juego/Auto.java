@@ -102,6 +102,7 @@ public class Auto {
 		if(tocaKamehameha() && kamehameha.getActivo()) {
 			this.vida=false;
 			kamehameha.setActivo(false);
+			conejo.sumarPuntaje(5);
 		}
 	}
 }
