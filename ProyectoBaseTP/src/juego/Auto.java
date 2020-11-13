@@ -82,10 +82,10 @@ public class Auto {
 		entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.green);
 	}
 	private boolean tocaConejo() {
-		return this.x > conejo.getX() - this.ancho &&
-				this.x < conejo.getX() +this.ancho &&
-				this.y > conejo.getY() - this.alto &&
-				this.y < conejo.getY() + this.alto;
+		return this.x > conejo.getX() - (this.ancho/1.5) &&
+				this.x < conejo.getX() +(this.ancho/1.5) &&
+				this.y > conejo.getY() - (this.alto/1.5) &&
+				this.y < conejo.getY() + (this.alto/1.5);
 	}
 	private void matarConejo() {
 		if(tocaConejo()) {
