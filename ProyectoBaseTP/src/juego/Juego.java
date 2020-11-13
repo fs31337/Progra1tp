@@ -83,7 +83,7 @@ public class Juego extends InterfaceJuego
 		kamehameha.iniciarComponentesFueraTick();
 	}
 	private void juegoActivoTick() {
-		if(conejo.getVida()) {
+		if(!juegoTerminado()) {
 			carretera1.iniciarComponentesEnTick();
 			carretera2.iniciarComponentesEnTick();
 			carretera3.iniciarComponentesEnTick();
@@ -101,16 +101,35 @@ public class Juego extends InterfaceJuego
 			autos5.iniciarComponentesEnTick();
 			autos6.iniciarComponentesEnTick();
 			autos7.iniciarComponentesEnTick();
-			autos8.iniciarComponentesEnTick();
-			
+			autos8.iniciarComponentesEnTick();			
 		}
-		else {
+		if (conejo.getPuntaje()>=10) {
+			win();
+		}
+		if (!conejo.getVida()){
 			gameOver();
 		}
+	}	
+	
+	private boolean juegoTerminado() {
+		if(!conejo.getVida())
+		{
+			return true;
+		}
+		if(conejo.getPuntaje()>=10) {
+			return true;
+		}
+		return false;
 	}
+	
+	
 	private void gameOver() {
 		entorno.cambiarFont("Arial", 100, Color.white);
 		entorno.escribirTexto("GAME OVER", entorno.ancho()/8, entorno.alto()/2);
+	}
+	private void win() {
+		entorno.cambiarFont("Arial", 100, Color.white);
+		entorno.escribirTexto("Ganaste", entorno.ancho()/8, entorno.alto()/2);
 	}
 	
 }

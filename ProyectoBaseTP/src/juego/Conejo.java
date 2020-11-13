@@ -56,6 +56,10 @@ public class Conejo {
 	public void setVida(boolean vida) {
 		this.vida=vida;
 	}
+	public int getPuntaje() {
+		return this.puntaje;
+	}
+	
 	public void iniciarComponentesEnTick() {
 		if(vida==true) {
 		dibujarConejo();
