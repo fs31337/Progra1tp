@@ -90,18 +90,18 @@ public class Conejo {
 	}
 	private void moverse() {
 		if(!espera) {
-			if(entorno.sePresiono('w')) {
+			if(entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 				y-=velocidad;
 				angulo=Herramientas.radianes(270);
 				espera=true;
 				puntaje++;
 			}
-			if(entorno.sePresiono('a')) {
+			if(entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
 				x-=velocidad;
 				angulo=Herramientas.radianes(180);
 				espera=true;
 			}
-			if(entorno.sePresiono('d')) {
+			if(entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
 				x+=velocidad;
 				angulo=Herramientas.radianes(0);
 				espera=true;
