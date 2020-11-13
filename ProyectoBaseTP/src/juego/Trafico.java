@@ -10,7 +10,7 @@ public class Trafico {
 	private double velocidad;
 	private Kamehameha kamehameha;
 	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,Kamehameha kamehameha,double velocidad) {
-		autos=new Auto[3];
+		autos=new Auto[4];
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.conejo=conejo;

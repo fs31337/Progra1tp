@@ -36,12 +36,12 @@ public class Juego extends InterfaceJuego
 		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo ... - v1", 800, 600);
 		this.conejo = new Conejo(entorno);
 		this.carretera1= new Carretera(entorno,"derecha",0); //Se crea una carretera, la cual pide un sentido y una posicion
-		this.carretera2= new Carretera(entorno,"derecha",30);
+		this.carretera2= new Carretera(entorno,"izquierda",30);
 		this.carretera3= new Carretera(entorno,"derecha",60);
-		this.carretera4= new Carretera(entorno,"derecha",90);
-		this.carretera5= new Carretera(entorno,"izquierda",300);
+		this.carretera4= new Carretera(entorno,"izquierda",90);
+		this.carretera5= new Carretera(entorno,"derecha",300);
 		this.carretera6= new Carretera(entorno,"izquierda",330);
-		this.carretera7= new Carretera(entorno,"izquierda",360);
+		this.carretera7= new Carretera(entorno,"derecha",360);
 		this.carretera8= new Carretera(entorno,"izquierda",390);
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
