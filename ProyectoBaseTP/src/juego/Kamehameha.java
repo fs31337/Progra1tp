@@ -21,7 +21,7 @@ public class Kamehameha {
 		this.activo=false;
 		this.angulo=Herramientas.radianes(270);
 		this.conejo=conejo;
-		this.usos=0;
+		this.usos=3;
 	}
 	public void setActivo(boolean activo) {
 		this.activo=activo;
@@ -49,6 +49,7 @@ public class Kamehameha {
 		
 			activar();
 			posicionar();
+			mostrarUsos();
 		
 	}
 	private void posicionar() {
@@ -58,10 +59,10 @@ public class Kamehameha {
 	}
 	private void activar() {
 	
-		if(entorno.sePresiono(entorno.TECLA_ESPACIO) && activo==false && usos<3) {
+		if(entorno.sePresiono(entorno.TECLA_ESPACIO) && activo==false && usos>0) {
 			this.activo=true;
 			this.alto=50;
-			usos++;
+			usos--;
 		}
 		if(activo==true) {
 			this.alto+=1.5;
@@ -72,6 +73,10 @@ public class Kamehameha {
 	
 	private void dibujar() {
 		entorno.dibujarRectangulo(x, y, ancho, alto, 0, Color.cyan);
+	}
+	private void mostrarUsos() {
+		entorno.cambiarFont("Arial Black", 20, Color.red);
+		entorno.escribirTexto("Kamehameha: "+usos, 300, 20);
 	}
 	
 	

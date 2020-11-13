@@ -10,6 +10,7 @@ public class Juego extends InterfaceJuego
 {
 	
 	private Entorno entorno;
+	public static final String TITULO="Boss Rabbit Rabber - Grupo ... - v1";
 	Conejo conejo;
 	Carretera carretera1; //mano derecha
 	Carretera carretera2;
@@ -33,7 +34,7 @@ public class Juego extends InterfaceJuego
 	public Juego()
 	{
 		
-		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo ... - v1", 800, 600);
+		this.entorno = new Entorno(this, TITULO, 800, 600);
 		this.conejo = new Conejo(entorno);
 		this.carretera1= new Carretera(entorno,"derecha",0); //Se crea una carretera, la cual pide un sentido y una posicion
 		this.carretera2= new Carretera(entorno,"izquierda",30);
