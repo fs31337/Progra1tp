@@ -30,7 +30,7 @@ public class Juego extends InterfaceJuego
 	Trafico autos8;
 	
 	Kamehameha kamehameha;
-	Juego()
+	public Juego()
 	{
 		
 		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo ... - v1", 800, 600);
@@ -69,8 +69,8 @@ public class Juego extends InterfaceJuego
 
 	}
 	private void juegoActivoFueraTick() {
-		conejo.inicarComponentesFueraTick();//se inician los respectivos componentes
-		autos1.iniciarComponentesFueraTick(); //se inician los respectivos componentes
+		conejo.inicarComponentesFueraTick();
+		autos1.iniciarComponentesFueraTick(); 
 		autos2.iniciarComponentesFueraTick();
 		autos3.iniciarComponentesFueraTick();
 		autos4.iniciarComponentesFueraTick();
@@ -111,10 +111,5 @@ public class Juego extends InterfaceJuego
 		entorno.cambiarFont("Arial", 100, Color.white);
 		entorno.escribirTexto("GAME OVER", entorno.ancho()/8, entorno.alto()/2);
 	}
-	@SuppressWarnings("unused")
-	public static void main(String[] args)
-	{
-		Juego juego = new Juego();
-		
-	}
+	
 }
