@@ -73,6 +73,10 @@ public class Conejo {
 		if(this.y>entorno.alto()+30) {
 			this.vida=false;
 		}
+		if(this.y<=30) {
+			y=50;
+		}
+		
 		if(this.x<0) {
 			x+=40;
 		}
