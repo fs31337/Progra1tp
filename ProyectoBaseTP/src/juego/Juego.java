@@ -58,7 +58,7 @@ public class Juego extends InterfaceJuego
 		
 		juegoActivoFueraTick();
 		
-		
+		Herramientas.loop("./resources/pink-panter.wav");
 		
 		this.entorno.iniciar();
 	}
