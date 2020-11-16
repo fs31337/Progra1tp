@@ -35,9 +35,9 @@ public class Conejo {
 	}
 	private void cargarImagenes() {
 		try {
-			this.imagenarr = Herramientas.cargarImagen("./resources/conejoarr.png");
-			this.imagenizq = Herramientas.cargarImagen("./resources/conejoizq.png");
-			this.imagender = Herramientas.cargarImagen("./resources/conejoder.png");
+			this.imagenarr = Herramientas.cargarImagen("./resources/conejo/conejoarr.png");
+			this.imagenizq = Herramientas.cargarImagen("./resources/conejo/conejoizq.png");
+			this.imagender = Herramientas.cargarImagen("./resources/conejo/conejoder.png");
 			this.ultimaImagen=imagenarr;
 			}
 		catch (Exception e){
@@ -122,7 +122,7 @@ public class Conejo {
 		  entorno.dibujarImagen(ultimaImagen, x, y, angulo, 1.5);		
 		}
 	private void reproducirSonidoSalto() {
-		Herramientas.play("./resources/jump.wav");
+		Herramientas.play("./resources/sonido/jump.wav");
 	}
 	private void moverse() {
 		if(!espera) {

@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.util.Random;
 
 import entorno.*;
 import juego.Carretera.Sentido;
@@ -15,6 +17,13 @@ public class Auto {
 	private Kamehameha kamehameha;
 	private Zanahoria zanahoria;
 	private RayoConversorZanahoria rayoConversorZanahoria;
+	private Image imagen;
+	private Image auto1;
+	private Image auto2;
+	private Image auto3;
+	private Image auto4;
+	private Image auto5;
+	private Image[] autos;
 	
 	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,Kamehameha kamehameha,Zanahoria zanahoria,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
 		this.entorno=entorno;
@@ -29,6 +38,9 @@ public class Auto {
 		this.kamehameha=kamehameha;
 		this.zanahoria=zanahoria;
 		this.rayoConversorZanahoria=rayoConversorZanahoria;
+		cargarImagenes();
+		this.imagen = autos[nRandom()];
+		
 	}
 	
 	public void iniciarComponentesEnTick() {
@@ -41,16 +53,31 @@ public class Auto {
 			convertirAutoEnZanahoria();
 		}
 	}
+	
+	private void cargarImagenes() {
+		try {
+			this.auto1 = Herramientas.cargarImagen("./resources/cars/red.png");
+			this.auto2 = Herramientas.cargarImagen("./resources/cars/lightblue.png");
+			this.auto3 = Herramientas.cargarImagen("./resources/cars/yellow.png");
+			this.auto4 = Herramientas.cargarImagen("./resources/cars/pink.png");
+			this.auto5 = Herramientas.cargarImagen("./resources/cars/green.png");
+			}		
+		catch (Exception e){
+			e.printStackTrace(System.err);
+		}
+		autos = new Image[] {auto1,auto2,auto3,auto4,auto5};
+	}
+	
 	public void iniciarComponentesFueraTick() {
 		setY();
 		setAngulo();
 	}
 	private void setAngulo() {
 		if(carretera.getSentido().equals(Sentido.DERECHA)) {
-			angulo=Herramientas.radianes(0);
+			angulo=Herramientas.radianes(90);
 		}
 		if(carretera.getSentido().equals(Sentido.IZQUIERDA)) {
-			angulo=Herramientas.radianes(180);
+			angulo=Herramientas.radianes(270);
 		}
 	}
 	private void setY() {
@@ -77,12 +104,20 @@ public class Auto {
 			x=entorno.ancho();
 		}
 	}
-	private void dibujarse() {
-		entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.green);
+	
+	private int nRandom() {
+		int numero = (int) (Math.random() * 5);
+		return numero;
 	}
+	
+	private void dibujarse() {
+		//entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.green);
+		entorno.dibujarImagen(imagen, x, y, angulo, 0.6);
+	}
+	
 	private boolean tocaConejo() {
-		return this.x > conejo.getX() - (this.ancho/1.5) &&
-				this.x < conejo.getX() +(this.ancho/1.5) &&
+		return this.x > conejo.getX() - (this.ancho/0.9) &&
+				this.x < conejo.getX() +(this.ancho/0.9) &&
 				this.y > conejo.getY() - (this.alto/1.5) &&
 				this.y < conejo.getY() + (this.alto/1.5);
 	}

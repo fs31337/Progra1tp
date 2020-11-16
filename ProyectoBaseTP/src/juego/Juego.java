@@ -130,7 +130,7 @@ public class Juego extends InterfaceJuego
 		}
 	}	
 	private void reproducirMusica() {
-		musica=Herramientas.cargarSonido("./resources/rabbit.wav");
+		musica=Herramientas.cargarSonido("./resources/sonido/rabbit.wav");
 		musica.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	private void detenerMusica() {
