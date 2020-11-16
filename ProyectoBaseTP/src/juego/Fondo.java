@@ -14,7 +14,7 @@ public class Fondo {
 		this.entorno=entorno;
 		this.x=entorno.ancho()/2;
 		this.y=y;
-		this.alto=50;
+		this.alto=100;
 		this.ancho=entorno.ancho();	
 		cargarImagenes();
 	}

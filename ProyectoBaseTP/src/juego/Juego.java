@@ -14,8 +14,8 @@ public class Juego extends InterfaceJuego
 	
 	private Entorno entorno;
 	public static final String TITULO="Boss Rabbit Rabber - Grupo ... - v1";
-	Fondo fondo;
-	Fondo fondo2;
+	//Fondo fondo;
+	//Fondo fondo2;
 	Conejo conejo;
 	Carretera carretera1; //mano derecha
 	Carretera carretera2;
@@ -45,18 +45,18 @@ public class Juego extends InterfaceJuego
 	{
 		
 		this.entorno = new Entorno(this, TITULO, 800, 600);
-		this.fondo = new Fondo(entorno,0);
-		this.fondo2 = new Fondo(entorno,350);
+		//this.fondo = new Fondo(entorno,0);
+		//this.fondo2 = new Fondo(entorno,350);
 		this.conejo = new Conejo(entorno);
-		this.carretera1= new Carretera(entorno,Sentido.DERECHA,-95); //Se crea una carretera, la cual pide un sentido y una posicion
-		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,-35);
-		this.carretera3= new Carretera(entorno,Sentido.DERECHA,33);
-		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,95);
+		this.carretera1= new Carretera(entorno,Sentido.DERECHA,-95,0); //Se crea una carretera, la cual pide un sentido y una posicion
+		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,-35,1);
+		this.carretera3= new Carretera(entorno,Sentido.DERECHA,33,2);
+		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,95,3);
 		
-		this.carretera5= new Carretera(entorno,Sentido.DERECHA,253);
-		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,315);
-		this.carretera7= new Carretera(entorno,Sentido.DERECHA,383);
-		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,445);
+		this.carretera5= new Carretera(entorno,Sentido.DERECHA,253,0);
+		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,315,1);
+		this.carretera7= new Carretera(entorno,Sentido.DERECHA,383,2);
+		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,445,3);
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
@@ -111,8 +111,8 @@ public class Juego extends InterfaceJuego
 			carretera6.iniciarComponentesEnTick();
 			carretera7.iniciarComponentesEnTick();
 			carretera8.iniciarComponentesEnTick();
-			fondo2.iniciarComponentesEnTick();
-			fondo.iniciarComponentesEnTick();
+			//fondo2.iniciarComponentesEnTick();
+			//fondo.iniciarComponentesEnTick();
 			conejo.iniciarComponentesEnTick();
 			kamehameha.iniciarComponentesEnTick();
 			zanahoria.iniciarComponentesEnTick();
