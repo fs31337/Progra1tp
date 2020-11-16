@@ -3,6 +3,8 @@ package juego;
 
 import java.awt.Color;
 
+import javax.sound.sampled.Clip;
+
 import entorno.*;
 import juego.Carretera.Sentido;
 
@@ -32,6 +34,7 @@ public class Juego extends InterfaceJuego
 	Trafico autos8;
 	
 	Kamehameha kamehameha;
+	Clip musica;
 	public Juego()
 	{
 		
@@ -58,12 +61,10 @@ public class Juego extends InterfaceJuego
 		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,0.43);
 		
 		juegoActivoFueraTick();
-		
-		Herramientas.loop("./resources/rabbit.wav");
+		reproducirMusica();
 		
 		this.entorno.iniciar();
 	}
-
 	
 	public void tick()
 	{
@@ -106,11 +107,20 @@ public class Juego extends InterfaceJuego
 		}
 		if (conejo.getPuntaje()>=20) {
 			win();
+			detenerMusica();
 		}
 		if (!conejo.getVida()){
 			gameOver();
+			detenerMusica();
 		}
 	}	
+	private void reproducirMusica() {
+		musica=Herramientas.cargarSonido("./resources/rabbit.wav");
+		musica.loop(Clip.LOOP_CONTINUOUSLY);
+	}
+	private void detenerMusica() {
+		musica.stop();
+	}
 	
 	private boolean juegoTerminado() {
 		if(!conejo.getVida())
