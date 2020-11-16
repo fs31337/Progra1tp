@@ -14,6 +14,8 @@ public class Juego extends InterfaceJuego
 	
 	private Entorno entorno;
 	public static final String TITULO="Boss Rabbit Rabber - Grupo ... - v1";
+	Fondo fondo;
+	Fondo fondo2;
 	Conejo conejo;
 	Carretera carretera1; //mano derecha
 	Carretera carretera2;
@@ -43,15 +45,18 @@ public class Juego extends InterfaceJuego
 	{
 		
 		this.entorno = new Entorno(this, TITULO, 800, 600);
+		this.fondo = new Fondo(entorno,0);
+		this.fondo2 = new Fondo(entorno,350);
 		this.conejo = new Conejo(entorno);
-		this.carretera1= new Carretera(entorno,Sentido.DERECHA,0); //Se crea una carretera, la cual pide un sentido y una posicion
-		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,45);
-		this.carretera3= new Carretera(entorno,Sentido.DERECHA,90);
-		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,135);
-		this.carretera5= new Carretera(entorno,Sentido.DERECHA,300);
-		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,345);
-		this.carretera7= new Carretera(entorno,Sentido.DERECHA,390);
-		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,435);
+		this.carretera1= new Carretera(entorno,Sentido.DERECHA,-95); //Se crea una carretera, la cual pide un sentido y una posicion
+		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,-35);
+		this.carretera3= new Carretera(entorno,Sentido.DERECHA,33);
+		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,95);
+		
+		this.carretera5= new Carretera(entorno,Sentido.DERECHA,253);
+		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,315);
+		this.carretera7= new Carretera(entorno,Sentido.DERECHA,383);
+		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,445);
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
@@ -70,7 +75,7 @@ public class Juego extends InterfaceJuego
 		
 		
 		juegoActivoFueraTick();
-		reproducirMusica();
+		//reproducirMusica();
 		
 		this.entorno.iniciar();
 	}
@@ -106,6 +111,8 @@ public class Juego extends InterfaceJuego
 			carretera6.iniciarComponentesEnTick();
 			carretera7.iniciarComponentesEnTick();
 			carretera8.iniciarComponentesEnTick();
+			fondo2.iniciarComponentesEnTick();
+			fondo.iniciarComponentesEnTick();
 			conejo.iniciarComponentesEnTick();
 			kamehameha.iniciarComponentesEnTick();
 			zanahoria.iniciarComponentesEnTick();
@@ -122,11 +129,11 @@ public class Juego extends InterfaceJuego
 		}
 		if (conejo.getPuntaje()>=20) {
 			win();
-			detenerMusica();
+			//detenerMusica();
 		}
 		if (!conejo.getVida()){
 			gameOver();
-			detenerMusica();
+			//detenerMusica();
 		}
 	}	
 	private void reproducirMusica() {

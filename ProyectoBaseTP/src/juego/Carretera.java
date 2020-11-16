@@ -14,6 +14,7 @@ public class Carretera {
 	private double x,y,ancho,alto;
 	private Sentido sentido;
 	private Entorno entorno;
+	
 	public Carretera(Entorno entorno,Sentido sentido, double y) {
 		this.entorno=entorno;
 		this.x=entorno.ancho()/2;
