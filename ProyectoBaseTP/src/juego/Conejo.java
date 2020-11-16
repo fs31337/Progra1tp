@@ -108,6 +108,7 @@ public class Conejo {
 				espera=true;
 				saltos++;
 				sumarPuntaje();
+				Herramientas.play("./resources/jump.wav");
 			}
 			if(entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
 				x-=velocidad;

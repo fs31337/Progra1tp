@@ -3,6 +3,7 @@ package juego;
 import java.awt.Color;
 
 import entorno.*;
+import juego.Carretera.Sentido;
 
 public class Auto {
 	private double x,y,angulo,velocidad;
@@ -40,33 +41,26 @@ public class Auto {
 		setAngulo();
 	}
 	private void setAngulo() {
-		if(carretera.getSentido().equals("derecha")) {
+		if(carretera.getSentido().equals(Sentido.DERECHA)) {
 			angulo=Herramientas.radianes(0);
 		}
-		if(carretera.getSentido().equals("izquierda")) {
+		if(carretera.getSentido().equals(Sentido.IZQUIERDA)) {
 			angulo=Herramientas.radianes(180);
 		}
 	}
 	private void setY() {
 		this.y=carretera.getY();
 	}
-	/*private void setX() {
-		if(carretera.getSentido().equals("derecha")) {
-			x=0;
-		}
-		if(carretera.getSentido().equals("izquierda")) {
-			x=entorno.ancho();
-		}
-	}*/
+	
 	public void setX(double x) {
 		this.x=x;
 	}
 	private void avanzar() {
 		y=carretera.getY();
-		if(carretera.getSentido().equals("derecha")) {
+		if(carretera.getSentido().equals(Sentido.DERECHA)) {
 			x+=velocidad;
 		}
-		if(carretera.getSentido().equals("izquierda")) {
+		if(carretera.getSentido().equals(Sentido.IZQUIERDA)) {
 			x-=velocidad;
 		}
 	}

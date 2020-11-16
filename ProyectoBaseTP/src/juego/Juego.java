@@ -4,6 +4,7 @@ package juego;
 import java.awt.Color;
 
 import entorno.*;
+import juego.Carretera.Sentido;
 
 
 public class Juego extends InterfaceJuego
@@ -36,14 +37,14 @@ public class Juego extends InterfaceJuego
 		
 		this.entorno = new Entorno(this, TITULO, 800, 600);
 		this.conejo = new Conejo(entorno);
-		this.carretera1= new Carretera(entorno,"derecha",0); //Se crea una carretera, la cual pide un sentido y una posicion
-		this.carretera2= new Carretera(entorno,"izquierda",30);
-		this.carretera3= new Carretera(entorno,"derecha",60);
-		this.carretera4= new Carretera(entorno,"izquierda",90);
-		this.carretera5= new Carretera(entorno,"derecha",300);
-		this.carretera6= new Carretera(entorno,"izquierda",330);
-		this.carretera7= new Carretera(entorno,"derecha",360);
-		this.carretera8= new Carretera(entorno,"izquierda",390);
+		this.carretera1= new Carretera(entorno,Sentido.DERECHA,0); //Se crea una carretera, la cual pide un sentido y una posicion
+		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,30);
+		this.carretera3= new Carretera(entorno,Sentido.DERECHA,60);
+		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,90);
+		this.carretera5= new Carretera(entorno,Sentido.DERECHA,300);
+		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,330);
+		this.carretera7= new Carretera(entorno,Sentido.DERECHA,360);
+		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,390);
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
@@ -58,7 +59,7 @@ public class Juego extends InterfaceJuego
 		
 		juegoActivoFueraTick();
 		
-		Herramientas.loop("./resources/pink-panter.wav");
+		Herramientas.loop("./resources/rabbit.wav");
 		
 		this.entorno.iniciar();
 	}
@@ -125,11 +126,11 @@ public class Juego extends InterfaceJuego
 	
 	private void gameOver() {
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("GAME OVER", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
 	}
 	private void win() {
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("Ganaste", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
 	}
 	
 }

@@ -4,12 +4,17 @@ import java.awt.Color;
 
 
 import entorno.*;
+import juego.Carretera.Sentido;
 
 public class Carretera {
+	
+	enum Sentido {
+		DERECHA, IZQUIERDA
+	}
 	private double x,y,ancho,alto;
-	private String sentido;
+	private Sentido sentido;
 	private Entorno entorno;
-	public Carretera(Entorno entorno,String sentido, double y) {
+	public Carretera(Entorno entorno,Sentido sentido, double y) {
 		this.entorno=entorno;
 		this.x=entorno.ancho()/2;
 		this.y=y;
@@ -30,7 +35,7 @@ public class Carretera {
 	public double getAlto() {
 		return this.alto;
 	}
-	public String getSentido() {
+	public Sentido getSentido() {
 		return this.sentido;
 	}
 	public void iniciarComponentesEnTick() {

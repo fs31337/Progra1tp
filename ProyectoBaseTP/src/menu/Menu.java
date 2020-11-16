@@ -35,10 +35,10 @@ public class Menu extends javax.swing.JFrame {
         etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
         etiquetaTitulo.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetaTitulo.setText("Boss Rabbit - Grupo ... - V1");
+        etiquetaTitulo.setText("Boss Rabbit Rabber - Grupo ... - V1");
 
         botonIniciarJuego.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        botonIniciarJuego.setText("Iniciar Juego");
+        botonIniciarJuego.setText("Iniciar juego");
         botonIniciarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIniciarJuegoActionPerformed(evt);
