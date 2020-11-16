@@ -38,13 +38,13 @@ public class Juego extends InterfaceJuego
 		this.entorno = new Entorno(this, TITULO, 800, 600);
 		this.conejo = new Conejo(entorno);
 		this.carretera1= new Carretera(entorno,Sentido.DERECHA,0); //Se crea una carretera, la cual pide un sentido y una posicion
-		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,30);
-		this.carretera3= new Carretera(entorno,Sentido.DERECHA,60);
-		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,90);
+		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,45);
+		this.carretera3= new Carretera(entorno,Sentido.DERECHA,90);
+		this.carretera4= new Carretera(entorno,Sentido.IZQUIERDA,135);
 		this.carretera5= new Carretera(entorno,Sentido.DERECHA,300);
-		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,330);
-		this.carretera7= new Carretera(entorno,Sentido.DERECHA,360);
-		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,390);
+		this.carretera6= new Carretera(entorno,Sentido.IZQUIERDA,345);
+		this.carretera7= new Carretera(entorno,Sentido.DERECHA,390);
+		this.carretera8= new Carretera(entorno,Sentido.IZQUIERDA,435);
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
@@ -104,7 +104,7 @@ public class Juego extends InterfaceJuego
 			autos7.iniciarComponentesEnTick();
 			autos8.iniciarComponentesEnTick();			
 		}
-		if (conejo.getPuntaje()>=10) {
+		if (conejo.getPuntaje()>=20) {
 			win();
 		}
 		if (!conejo.getVida()){
@@ -117,7 +117,7 @@ public class Juego extends InterfaceJuego
 		{
 			return true;
 		}
-		if(conejo.getPuntaje()>=10) {
+		if(conejo.getPuntaje()>=20) {
 			return true;
 		}
 		return false;

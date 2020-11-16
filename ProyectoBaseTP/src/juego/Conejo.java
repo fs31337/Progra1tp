@@ -16,6 +16,7 @@ public class Conejo {
 	private Image imagenarr;
 	private Image imagenizq;
 	private Image imagender;
+	private Image ultimaImagen;
 	
 	public Conejo(Entorno entorno) {
 		this.entorno=entorno;
@@ -27,17 +28,18 @@ public class Conejo {
 		this.espera=false;
 		this.puntaje=0;
 		this.saltos=0;	
+		cargarImagenes();
+	}
+	private void cargarImagenes() {
 		try {
 			this.imagenarr = Herramientas.cargarImagen("./resources/conejoarr.png");
 			this.imagenizq = Herramientas.cargarImagen("./resources/conejoizq.png");
 			this.imagender = Herramientas.cargarImagen("./resources/conejoder.png");
+			this.ultimaImagen=imagenarr;
 			}
 		catch (Exception e){
-			System.out.println(e + "No se cargaron las imagenes");
-			
+			e.printStackTrace(System.err);
 		}	
-		
-		
 	}
 	public void sumarPuntaje(int puntaje) {
 		this.puntaje+=puntaje;
@@ -114,32 +116,35 @@ public class Conejo {
 	
 	private void dibujarConejo() {
 		//entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.red);
-		  entorno.dibujarImagen(imagenarr, x, y, angulo, 1.5);		
+		  entorno.dibujarImagen(ultimaImagen, x, y, angulo, 1.5);		
 		}
-	
+	private void reproducirSonidoSalto() {
+		Herramientas.play("./resources/jump.wav");
+	}
 	private void moverse() {
 		if(!espera) {
 			if(entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-				entorno.dibujarImagen(imagenarr, x, y, angulo, 1.5);
+				this.ultimaImagen=imagenarr;
 				y-=velocidad;
 				//angulo=Herramientas.radianes(270);
 				espera=true;
 				saltos++;
 				sumarPuntaje();
-				Herramientas.play("./resources/jump.wav");				
+				reproducirSonidoSalto();			
 			}
 			if(entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-				entorno.dibujarImagen(imagenizq, x, y, angulo, 1.5);
+				this.ultimaImagen=imagenizq;
 				x-=velocidad;
 				//angulo=Herramientas.radianes(180);
-				espera=true;				
+				espera=true;
+				reproducirSonidoSalto();
 			}
 			if(entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-				entorno.dibujarImagen(imagender, x, y, angulo, 1.5);
+				this.ultimaImagen=imagender;
 				x+=velocidad;
 				//angulo=Herramientas.radianes(0);
 				espera=true;
-				
+				reproducirSonidoSalto();
 			}
 			
 	}
@@ -147,7 +152,7 @@ public class Conejo {
 	private void tiempoEspera() {
 		Timer tiempo=new Timer();
 		TimerTask tarea=new TimerTask() {
-
+			
 			@Override
 			public void run() {
 				espera=false;
@@ -156,7 +161,9 @@ public class Conejo {
 			
 		};
 		tiempo.schedule(tarea, 0,300);
+
 	}
+	
 	private void mostarPuntaje() {
 		entorno.cambiarFont("Arial Black", 20, Color.white);
 		entorno.escribirTexto("Puntos: "+puntaje, 20, 20);
