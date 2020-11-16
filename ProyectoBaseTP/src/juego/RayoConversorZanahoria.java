@@ -3,39 +3,35 @@ package juego;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.Format;
 
 import javax.swing.Timer;
 
 import entorno.*;
 
-public class Kamehameha {
-	private double x,y,ancho,alto,angulo;
+public class RayoConversorZanahoria {
+	private double x,y,ancho,alto;
 	private boolean activo;
-	private boolean recarga;
 	private Entorno entorno;
 	private Conejo conejo;
-	private int usos;
+	private boolean recarga;
 	private Timer tiempoActivo;
 	private Timer tiempoRecarga;
+	private int cent,seg;
 	
-	private int cent;
-	private int seg;
-	public Kamehameha(Entorno entorno,Conejo conejo) {
-		this.entorno=entorno;
+	
+	public RayoConversorZanahoria(Entorno entorno, Conejo conejo) {
 		this.x=0;
 		this.y=0;
 		this.ancho=30;
 		this.alto=30;
 		this.activo=false;
-		this.angulo=Herramientas.radianes(270);
+		this.entorno=entorno;
 		this.conejo=conejo;
-		this.usos=5;
+		//this.zanahoria=zanahoria;
+		this.recarga=false;
 		this.cent=0;
 		this.seg=0;
-	}
-	public void setActivo(boolean activo) {
-		this.activo=activo;
+		
 	}
 	public double getX() {
 		return this.x;
@@ -52,80 +48,75 @@ public class Kamehameha {
 	public boolean getActivo() {
 		return this.activo;
 	}
-	
-	public void iniciarComponentesFueraTick() {
-		
+	public boolean getRecarga() {
+		return this.recarga;
+	}
+	public void setActivo(boolean activo) {
+		this.activo=activo;
 	}
 	public void iniciarComponentesEnTick() {
 			activar();
-			posicionar();
-			mostrarUsos();
 	}
-	private void tiempoActivo() {
-		tiempoActivo=new Timer(1000,new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				activo=false;
-				tiempoActivo.stop();
-			}
-			
-		});
-		tiempoActivo.start();
+	public void iniciarComponentesFueraTick() {
+		
 	}
 	private void tiempoRecarga() {
-		tiempoRecarga=new Timer(3000,new ActionListener() {
-
+		tiempoRecarga = new Timer(5000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				recarga=false;
 				tiempoRecarga.stop();
+				
 			}
-			
 		});
 		tiempoRecarga.start();
 	}
-	private void posicionar() {
-		this.x=conejo.getX();
-		this.y=conejo.getY()-(alto/2);
+	private void tiempoActivo() {
+		tiempoActivo = new Timer(2000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				activo=false;
+				tiempoActivo.stop();
+				
+			}
+		});
+		tiempoActivo.start();
 		
 	}
+	private void dibujar() {
+		entorno.dibujarRectangulo(x, y, ancho, alto, Herramientas.radianes(270), Color.yellow);
+	}
+	private void posicionar() {
+		this.x=conejo.getX();
+		this.y=conejo.getY();
+	}
 	private void activar() {
-		
-		if(entorno.sePresiono(entorno.TECLA_ESPACIO) && activo==false && usos>0 && recarga==false) {
+		if(entorno.sePresiono('r') && recarga==false && activo==false) {
 			this.activo=true;
 			this.recarga=true;
-			this.alto=50;
-			usos--;
 			tiempoActivo();
+			posicionar();
 			tiempoRecarga();
-			cent=300;
-			seg=2;
+			cent=500;
+			seg=4;
+			
 		}
 		if(activo==true) {
-			this.alto+=1.5;
+			this.y-=2;
 			dibujar();
 		}
 		if(recarga==true) {
 			cent--;
-			if(cent==300 || cent==200 || cent==100) {
+			if(cent==400 ||cent==300 || cent==200 || cent==100) {
 				seg--;
 			}
 			escribirRecarga(seg);
 		}
 	}
-	
 	private void escribirRecarga(int seg) {
 		entorno.cambiarFont("Arial Black", 20, Color.white);
-		entorno.escribirTexto("Recarga Kamehameha= "+seg, 490, 20);
+		entorno.escribirTexto("Recarga Rayo Conversor= "+seg, 490, 40);
 	}
-	private void dibujar() {
-		entorno.dibujarRectangulo(x, y, ancho, alto, 0, Color.cyan);
-	}
-	private void mostrarUsos() {
-		entorno.cambiarFont("Arial Black", 20, Color.red);
-		entorno.escribirTexto("Kamehameha: "+usos, 300, 20);
-	}
-	
 	
 }
+	

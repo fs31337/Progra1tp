@@ -1,0 +1,70 @@
+package juego;
+
+import java.awt.Color;
+
+import entorno.*;
+
+public class Zanahoria {
+	private double x,y,ancho,alto;
+	private boolean visible;
+	private Entorno entorno;
+	private Conejo conejo;
+	private Auto auto;
+	public Zanahoria(Entorno entorno, Conejo conejo) {
+		this.x=0;
+		this.y=0;
+		this.ancho=20;
+		this.alto=20;
+		this.visible=false;
+		this.entorno=entorno;
+		this.conejo=conejo;
+		this.auto=auto;
+	}
+	public double getX() {
+		return this.x;
+	}
+	public double getY() {
+		return this.y;
+	}
+	public double getAncho() {
+		return this.ancho;
+	}
+	public double getAlto() {
+		return this.alto;
+	}
+	public void setVisible(boolean visible) {
+		this.visible=visible;
+	}
+	public void setX(double x) {
+		this.x=x;
+	}
+	public void setY(double y) {
+		this.y=y;
+	}
+	public void iniciarComponentesEnTick() {
+		if(visible) {
+			dibujar();
+			comerZanahoria();
+			avanzar();
+		}
+	}
+	private void avanzar() {
+		this.y+=0.2;
+	}
+	private void dibujar() {
+		//Agregar imagen de zanahoria
+		entorno.dibujarCirculo(x, y, alto, Color.ORANGE);
+	}
+	private void comerZanahoria() {
+		if(tocaConejo()) {
+			conejo.sumarPuntaje(2);
+			this.visible=false;
+		}
+	}
+	private boolean tocaConejo() {
+		return this.x > conejo.getX() - (this.ancho*2) &&
+				this.x < conejo.getX() +(this.ancho*2) &&
+				this.y > conejo.getY() - (this.alto*2) &&
+				this.y < conejo.getY() + (this.alto*2);
+	}
+}

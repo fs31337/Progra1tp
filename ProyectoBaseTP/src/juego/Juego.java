@@ -34,7 +34,11 @@ public class Juego extends InterfaceJuego
 	Trafico autos8;
 	
 	Kamehameha kamehameha;
+	
 	Clip musica;
+	
+	Zanahoria zanahoria;
+	RayoConversorZanahoria rayoConversorZanahoria;
 	public Juego()
 	{
 		
@@ -51,14 +55,19 @@ public class Juego extends InterfaceJuego
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
-		this.autos1 = new Trafico(entorno,carretera1,conejo,kamehameha,2); //Se crea un arreglo de autos la cual toma una carretera (con su respectivo sentido), un conejo, y una velocidad
-		this.autos2 = new Trafico(entorno,carretera2,conejo,kamehameha,1.1);
-		this.autos3 = new Trafico(entorno,carretera3,conejo,kamehameha,0.8);
-		this.autos4 = new Trafico(entorno,carretera4,conejo,kamehameha,0.47);
-		this.autos5 = new Trafico(entorno,carretera5,conejo,kamehameha,2);
-		this.autos6 = new Trafico(entorno,carretera6,conejo,kamehameha,1.5);
-		this.autos7 = new Trafico(entorno,carretera7,conejo,kamehameha,0.7);
-		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,0.43);
+		this.zanahoria=new Zanahoria(entorno, conejo);
+		
+		this.rayoConversorZanahoria=new RayoConversorZanahoria(entorno, conejo);
+		
+		this.autos1 = new Trafico(entorno,carretera1,conejo,kamehameha,zanahoria,rayoConversorZanahoria,2); //Se crea un arreglo de autos la cual toma una carretera (con su respectivo sentido), un conejo, y una velocidad
+		this.autos2 = new Trafico(entorno,carretera2,conejo,kamehameha,zanahoria,rayoConversorZanahoria,1.1);
+		this.autos3 = new Trafico(entorno,carretera3,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.8);
+		this.autos4 = new Trafico(entorno,carretera4,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.47);
+		this.autos5 = new Trafico(entorno,carretera5,conejo,kamehameha,zanahoria,rayoConversorZanahoria,2);
+		this.autos6 = new Trafico(entorno,carretera6,conejo,kamehameha,zanahoria,rayoConversorZanahoria,1.5);
+		this.autos7 = new Trafico(entorno,carretera7,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.7);
+		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.43);
+		
 		
 		juegoActivoFueraTick();
 		reproducirMusica();
@@ -83,6 +92,9 @@ public class Juego extends InterfaceJuego
 		autos8.iniciarComponentesFueraTick();
 		
 		kamehameha.iniciarComponentesFueraTick();
+		
+		
+		
 	}
 	private void juegoActivoTick() {
 		if(!juegoTerminado()) {
@@ -96,6 +108,8 @@ public class Juego extends InterfaceJuego
 			carretera8.iniciarComponentesEnTick();
 			conejo.iniciarComponentesEnTick();
 			kamehameha.iniciarComponentesEnTick();
+			zanahoria.iniciarComponentesEnTick();
+			rayoConversorZanahoria.iniciarComponentesEnTick();
 			autos1.iniciarComponentesEnTick();
 			autos2.iniciarComponentesEnTick();
 			autos3.iniciarComponentesEnTick();
@@ -103,7 +117,8 @@ public class Juego extends InterfaceJuego
 			autos5.iniciarComponentesEnTick();
 			autos6.iniciarComponentesEnTick();
 			autos7.iniciarComponentesEnTick();
-			autos8.iniciarComponentesEnTick();			
+			autos8.iniciarComponentesEnTick();
+			
 		}
 		if (conejo.getPuntaje()>=20) {
 			win();

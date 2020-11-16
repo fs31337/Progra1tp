@@ -2,8 +2,11 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.util.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.TimerTask;
+
+import javax.swing.Timer;
 
 import entorno.*;
 
@@ -149,19 +152,18 @@ public class Conejo {
 			
 	}
 	}
+	
 	private void tiempoEspera() {
-		Timer tiempo=new Timer();
-		TimerTask tarea=new TimerTask() {
-			
+		Timer tiempo=new Timer(300,new ActionListener() {
+
 			@Override
-			public void run() {
+			public void actionPerformed(ActionEvent e) {
 				espera=false;
 				
 			}
 			
-		};
-		tiempo.schedule(tarea, 0,300);
-
+		});
+		tiempo.start();
 	}
 	
 	private void mostarPuntaje() {

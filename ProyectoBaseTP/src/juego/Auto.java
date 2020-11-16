@@ -13,8 +13,10 @@ public class Auto {
 	private Conejo conejo;
 	private boolean vida;
 	private Kamehameha kamehameha;
+	private Zanahoria zanahoria;
+	private RayoConversorZanahoria rayoConversorZanahoria;
 	
-	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,Kamehameha kamehameha,double velocidad) {
+	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,Kamehameha kamehameha,Zanahoria zanahoria,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.y=0;
@@ -25,6 +27,8 @@ public class Auto {
 		this.velocidad=velocidad;
 		this.vida=true;
 		this.kamehameha=kamehameha;
+		this.zanahoria=zanahoria;
+		this.rayoConversorZanahoria=rayoConversorZanahoria;
 	}
 	
 	public void iniciarComponentesEnTick() {
@@ -34,6 +38,7 @@ public class Auto {
 			resetear();
 			matarConejo();
 			destruirAuto();
+			convertirAutoEnZanahoria();
 		}
 	}
 	public void iniciarComponentesFueraTick() {
@@ -92,11 +97,26 @@ public class Auto {
 				this.y > kamehameha.getY() - (this.alto*2) &&
 				this.y < kamehameha.getY() + (this.alto*2);
 	}
+	private boolean tocaRayoConversorZanahoria() {
+		return this.x > rayoConversorZanahoria.getX() - (this.ancho*2) &&
+				this.x < rayoConversorZanahoria.getX() +(this.ancho*2) &&
+				this.y > rayoConversorZanahoria.getY() - (this.alto*2) &&
+				this.y < rayoConversorZanahoria.getY() + (this.alto*2);
+	}
 	private void destruirAuto() {
 		if(tocaKamehameha() && kamehameha.getActivo()) {
 			this.vida=false;
 			kamehameha.setActivo(false);
 			conejo.sumarPuntaje(5);
+		}
+	}
+	private void convertirAutoEnZanahoria() {
+		if(tocaRayoConversorZanahoria() && rayoConversorZanahoria.getActivo()) {
+			rayoConversorZanahoria.setActivo(false);
+			zanahoria.setX(this.x);
+			zanahoria.setY(this.y);
+			zanahoria.setVisible(true);
+			this.vida=false;
 		}
 	}
 }

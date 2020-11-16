@@ -9,17 +9,21 @@ public class Trafico {
 	private Conejo conejo;
 	private double velocidad;
 	private Kamehameha kamehameha;
-	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,Kamehameha kamehameha,double velocidad) {
+	private Zanahoria zanahoria;
+	private RayoConversorZanahoria rayoConversorZanahoria;
+	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,Kamehameha kamehameha,Zanahoria zanahoria,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
 		autos=new Auto[4];
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.conejo=conejo;
 		this.velocidad=velocidad;
 		this.kamehameha=kamehameha;
+		this.zanahoria=zanahoria;
+		this.rayoConversorZanahoria=rayoConversorZanahoria;
 	}
 	private void crearAutos() {
 		for (int i=0;i<autos.length;i++) {
-			Auto auto=new Auto(entorno,carretera,conejo,kamehameha,velocidad);
+			Auto auto=new Auto(entorno,carretera,conejo,kamehameha,zanahoria,rayoConversorZanahoria,velocidad);
 			autos[i]=auto;
 		}
 		
