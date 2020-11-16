@@ -126,11 +126,11 @@ public class Juego extends InterfaceJuego
 	
 	private void gameOver() {
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("Â¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
 	}
 	private void win() {
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("Â¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
 	}
 	
 }
