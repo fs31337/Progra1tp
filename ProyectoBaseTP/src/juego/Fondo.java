@@ -48,7 +48,7 @@ public class Fondo {
 	public void setAncho(int ancho) {
 		this.ancho = ancho;
 	}
-
+	// te agrego un comentario secreto aca mira hola como te va querido
 
 	public int getAlto() {
 		return alto;
