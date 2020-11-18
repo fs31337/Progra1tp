@@ -74,6 +74,9 @@ public class Carretera {
 	private void avanzar() {
 		y+=0.2;
 	}
+	public void detener() {
+		y-=0.2;
+	}
 	private void reiniciar() {
 		if(y>entorno.alto()+50) {
 			y=0;

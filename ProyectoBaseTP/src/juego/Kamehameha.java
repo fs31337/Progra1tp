@@ -99,7 +99,7 @@ public class Kamehameha {
 			usos--;
 			tiempoActivo();
 			tiempoRecarga();
-			cent=300;
+			cent=0;
 			seg=2;
 		}
 		if(activo==true) {
@@ -107,9 +107,10 @@ public class Kamehameha {
 			dibujar();
 		}
 		if(recarga==true) {
-			cent--;
-			if(cent==300 || cent==200 || cent==100) {
+			cent++;
+			if(cent>=100) {
 				seg--;
+				cent=0;
 			}
 			escribirRecarga(seg);
 		}
@@ -117,7 +118,7 @@ public class Kamehameha {
 	
 	private void escribirRecarga(int seg) {
 		entorno.cambiarFont("Arial Black", 20, Color.white);
-		entorno.escribirTexto("Recarga Kamehameha= "+seg, 490, 20);
+		entorno.escribirTexto("Recarga Kamehameha= "+seg, 490, 60);
 	}
 	private void dibujar() {
 		entorno.dibujarRectangulo(x, y, ancho, alto, 0, Color.cyan);

@@ -98,6 +98,15 @@ public class Auto {
 			x-=velocidad;
 		}
 	}
+	public void detener() {
+		y=carretera.getY();
+		if(carretera.getSentido().equals(Sentido.DERECHA)) {
+			x-=velocidad;
+		}
+		if(carretera.getSentido().equals(Sentido.IZQUIERDA)) {
+			x+=velocidad;
+		}
+	}
 	private void resetear() {
 		if(x>entorno.ancho()+50) {
 			x=0;

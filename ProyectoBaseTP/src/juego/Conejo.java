@@ -98,6 +98,9 @@ public class Conejo {
 	private void moverAbajo() {
 		y+=0.2;
 	}
+	public void moverArriba() {
+		y-=0.2;
+	}
 	private void tocaLimite() {
 		if(this.y>entorno.alto()+30) {
 			this.vida=false;

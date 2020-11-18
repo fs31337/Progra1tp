@@ -50,4 +50,9 @@ public class Trafico {
 	public Auto[] getAutos() {
 		return this.autos;
 	}
+	public void detenerTrafico() {
+		for(Auto auto:this.autos) {
+			auto.detener();
+		}
+	}
 }

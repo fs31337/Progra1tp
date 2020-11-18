@@ -42,6 +42,10 @@ public class Juego extends InterfaceJuego
 	Zanahorias zanahorias;
 	RayoConversorZanahoria rayoConversorZanahoria;
 	
+	Carretera carreteras[];
+	Trafico trafico[];
+	
+	ZaWarudo zaWarudo;
 	
 	private boolean ganaste,perdiste;
 	public Juego()
@@ -76,7 +80,10 @@ public class Juego extends InterfaceJuego
 		this.autos7 = new Trafico(entorno,carretera7,conejo,kamehameha,zanahorias,rayoConversorZanahoria,0.7);
 		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,zanahorias,rayoConversorZanahoria,0.43);
 		
+		this.carreteras = new Carretera[] {carretera1,carretera2,carretera3,carretera4,carretera5,carretera6,carretera7,carretera8};
+		this.trafico = new Trafico[] {autos1,autos2,autos3,autos4,autos5,autos6,autos7,autos8};
 		
+		this.zaWarudo = new ZaWarudo(entorno, conejo, carreteras, trafico, zanahorias);
 		
 		this.ganaste=false;
 		this.perdiste=false;
@@ -134,6 +141,7 @@ public class Juego extends InterfaceJuego
 			autos6.iniciarComponentesEnTick();
 			autos7.iniciarComponentesEnTick();
 			autos8.iniciarComponentesEnTick();
+			zaWarudo.iniciarComponentesEnTick();
 			
 		}
 		else if (conejo.getPuntaje()>=20) 

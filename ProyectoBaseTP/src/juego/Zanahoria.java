@@ -65,6 +65,9 @@ public class Zanahoria {
 	private void avanzar() {
 		this.y+=0.2;
 	}
+	public void detener() {
+		this.y-=0.2;
+	}
 	private void dibujar() {
 		//Agregar imagen de zanahoria
 		//entorno.dibujarCirculo(x, y, alto, Color.ORANGE);

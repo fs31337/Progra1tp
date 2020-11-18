@@ -32,5 +32,10 @@ public class Zanahorias {
 	public Zanahoria[] getZanahorias() {
 		return this.zanahorias;
 	}
+	public void detenerZanahorias() {
+		for(Zanahoria zanahoria:zanahorias) {
+			zanahoria.detener();
+		}
+	}
 	
 }
