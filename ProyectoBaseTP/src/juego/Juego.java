@@ -13,7 +13,7 @@ public class Juego extends InterfaceJuego
 {
 	
 	private Entorno entorno;
-	public static final String TITULO="Boss Rabbit Rabber - Grupo ... - v1";
+	public static final String TITULO ="Boss Rabbit Rabber - Grupo ... - v1";
 	//Fondo fondo;
 	//Fondo fondo2;
 	Conejo conejo;
@@ -85,7 +85,8 @@ public class Juego extends InterfaceJuego
 		juegoActivoTick();
 
 	}
-	private void juegoActivoFueraTick() {
+	private void juegoActivoFueraTick() 
+	{
 		conejo.inicarComponentesFueraTick();
 		autos1.iniciarComponentesFueraTick(); 
 		autos2.iniciarComponentesFueraTick();
@@ -127,7 +128,8 @@ public class Juego extends InterfaceJuego
 			autos8.iniciarComponentesEnTick();
 			
 		}
-		if (conejo.getPuntaje()>=20) {
+		if (conejo.getPuntaje()>=20) 
+		{
 			win();
 			//detenerMusica();
 		}
@@ -136,33 +138,49 @@ public class Juego extends InterfaceJuego
 			//detenerMusica();
 		}
 	}	
-	private void reproducirMusica() {
+	private void reproducirMusica() 
+	{
 		musica=Herramientas.cargarSonido("./resources/sonido/rabbit.wav");
 		musica.loop(Clip.LOOP_CONTINUOUSLY);
 	}
-	private void detenerMusica() {
+	private void detenerMusica() 
+	{
 		musica.stop();
 	}
 	
-	private boolean juegoTerminado() {
+	private boolean juegoTerminado() 
+	{
 		if(!conejo.getVida())
 		{
 			return true;
 		}
-		if(conejo.getPuntaje()>=20) {
+		if(conejo.getPuntaje()>=20) 
+		{
 			return true;
 		}
 		return false;
 	}
 	
 	
-	private void gameOver() {
+	private void gameOver() 
+	{
+		//Herramientas.play("./resources/sonido/game-over.wav");
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("Â¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
+		if(entorno.sePresiono('r'))
+		{
+			new Juego();
+		}
 	}
-	private void win() {
+	private void win() 
+	{
+		//Herramientas.play("./resources/sonido/wins.wav");
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("Â¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
+		if(entorno.sePresiono('r'))
+		{
+			new Juego();
+		}
 	}
 	
 }

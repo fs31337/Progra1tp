@@ -118,7 +118,6 @@ public class Conejo {
 	}
 	
 	private void dibujarConejo() {
-		//entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.red);
 		  entorno.dibujarImagen(ultimaImagen, x, y, angulo, 1.5);		
 		}
 	private void reproducirSonidoSalto() {
