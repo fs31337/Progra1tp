@@ -97,7 +97,7 @@ public class RayoConversorZanahoria {
 			tiempoActivo();
 			posicionar();
 			tiempoRecarga();
-			cent=500;
+			cent=0;
 			seg=4;
 			
 		}
@@ -106,9 +106,10 @@ public class RayoConversorZanahoria {
 			dibujar();
 		}
 		if(recarga==true) {
-			cent--;
-			if(cent==400 ||cent==300 || cent==200 || cent==100) {
+			cent++;
+			if(cent>=100) {
 				seg--;
+				cent=0;
 			}
 			escribirRecarga(seg);
 		}

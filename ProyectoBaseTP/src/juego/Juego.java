@@ -39,8 +39,11 @@ public class Juego extends InterfaceJuego
 	
 	Clip musica;
 	
-	Zanahoria zanahoria;
+	Zanahorias zanahorias;
 	RayoConversorZanahoria rayoConversorZanahoria;
+	
+	
+	private boolean ganaste,perdiste;
 	public Juego()
 	{
 		
@@ -60,19 +63,23 @@ public class Juego extends InterfaceJuego
 		
 		this.kamehameha = new Kamehameha(entorno, conejo);
 		
-		this.zanahoria=new Zanahoria(entorno, conejo);
+		this.zanahorias=new Zanahorias(entorno, conejo);
 		
 		this.rayoConversorZanahoria=new RayoConversorZanahoria(entorno, conejo);
 		
-		this.autos1 = new Trafico(entorno,carretera1,conejo,kamehameha,zanahoria,rayoConversorZanahoria,2); //Se crea un arreglo de autos la cual toma una carretera (con su respectivo sentido), un conejo, y una velocidad
-		this.autos2 = new Trafico(entorno,carretera2,conejo,kamehameha,zanahoria,rayoConversorZanahoria,1.1);
-		this.autos3 = new Trafico(entorno,carretera3,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.8);
-		this.autos4 = new Trafico(entorno,carretera4,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.47);
-		this.autos5 = new Trafico(entorno,carretera5,conejo,kamehameha,zanahoria,rayoConversorZanahoria,2);
-		this.autos6 = new Trafico(entorno,carretera6,conejo,kamehameha,zanahoria,rayoConversorZanahoria,1.5);
-		this.autos7 = new Trafico(entorno,carretera7,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.7);
-		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,zanahoria,rayoConversorZanahoria,0.43);
+		this.autos1 = new Trafico(entorno,carretera1,conejo,kamehameha,zanahorias,rayoConversorZanahoria,2); //Se crea un arreglo de autos la cual toma una carretera (con su respectivo sentido), un conejo, y una velocidad
+		this.autos2 = new Trafico(entorno,carretera2,conejo,kamehameha,zanahorias,rayoConversorZanahoria,1.1);
+		this.autos3 = new Trafico(entorno,carretera3,conejo,kamehameha,zanahorias,rayoConversorZanahoria,0.8);
+		this.autos4 = new Trafico(entorno,carretera4,conejo,kamehameha,zanahorias,rayoConversorZanahoria,0.47);
+		this.autos5 = new Trafico(entorno,carretera5,conejo,kamehameha,zanahorias,rayoConversorZanahoria,2);
+		this.autos6 = new Trafico(entorno,carretera6,conejo,kamehameha,zanahorias,rayoConversorZanahoria,1.5);
+		this.autos7 = new Trafico(entorno,carretera7,conejo,kamehameha,zanahorias,rayoConversorZanahoria,0.7);
+		this.autos8 = new Trafico(entorno,carretera8,conejo,kamehameha,zanahorias,rayoConversorZanahoria,0.43);
 		
+		
+		
+		this.ganaste=false;
+		this.perdiste=false;
 		
 		juegoActivoFueraTick();
 		//reproducirMusica();
@@ -88,6 +95,7 @@ public class Juego extends InterfaceJuego
 	private void juegoActivoFueraTick() 
 	{
 		conejo.inicarComponentesFueraTick();
+		zanahorias.iniciarComponentesFueraTick();
 		autos1.iniciarComponentesFueraTick(); 
 		autos2.iniciarComponentesFueraTick();
 		autos3.iniciarComponentesFueraTick();
@@ -116,7 +124,7 @@ public class Juego extends InterfaceJuego
 			//fondo.iniciarComponentesEnTick();
 			conejo.iniciarComponentesEnTick();
 			kamehameha.iniciarComponentesEnTick();
-			zanahoria.iniciarComponentesEnTick();
+			zanahorias.iniciarComponentesEnTick();
 			rayoConversorZanahoria.iniciarComponentesEnTick();
 			autos1.iniciarComponentesEnTick();
 			autos2.iniciarComponentesEnTick();
@@ -128,12 +136,12 @@ public class Juego extends InterfaceJuego
 			autos8.iniciarComponentesEnTick();
 			
 		}
-		if (conejo.getPuntaje()>=20) 
+		else if (conejo.getPuntaje()>=20) 
 		{
 			win();
 			//detenerMusica();
 		}
-		if (!conejo.getVida()){
+		else if (!conejo.getVida()){
 			gameOver();
 			//detenerMusica();
 		}
@@ -164,19 +172,26 @@ public class Juego extends InterfaceJuego
 	
 	private void gameOver() 
 	{
-		//Herramientas.play("./resources/sonido/game-over.wav");
+		if (!perdiste) {
+			Herramientas.play("./resources/sonido/game-over.wav");
+		}
+		this.perdiste=true;
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("Â¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("¡PERDISTE!", entorno.ancho()/8, entorno.alto()/2);
 		if(entorno.sePresiono('r'))
 		{
+			
 			new Juego();
 		}
 	}
 	private void win() 
 	{
-		//Herramientas.play("./resources/sonido/wins.wav");
+		if(!ganaste) {
+			Herramientas.play("./resources/sonido/wins.wav");
+		}
+		this.ganaste=true;
 		entorno.cambiarFont("Arial", 100, Color.white);
-		entorno.escribirTexto("Â¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
+		entorno.escribirTexto("¡GANASTE!", entorno.ancho()/8, entorno.alto()/2);
 		if(entorno.sePresiono('r'))
 		{
 			new Juego();

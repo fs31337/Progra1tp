@@ -15,7 +15,7 @@ public class Auto {
 	private Conejo conejo;
 	private boolean vida;
 	private Kamehameha kamehameha;
-	private Zanahoria zanahoria;
+	private Zanahorias zanahorias;
 	private RayoConversorZanahoria rayoConversorZanahoria;
 	private Image imagen;
 	private Image auto1;
@@ -24,8 +24,9 @@ public class Auto {
 	private Image auto4;
 	private Image auto5;
 	private Image[] autos;
+
 	
-	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,Kamehameha kamehameha,Zanahoria zanahoria,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
+	public Auto(Entorno entorno,Carretera carretera,Conejo conejo,Kamehameha kamehameha,Zanahorias zanahorias,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.y=0;
@@ -36,10 +37,11 @@ public class Auto {
 		this.velocidad=velocidad;
 		this.vida=true;
 		this.kamehameha=kamehameha;
-		this.zanahoria=zanahoria;
+		this.zanahorias=zanahorias;
 		this.rayoConversorZanahoria=rayoConversorZanahoria;
 		cargarImagenes();
 		this.imagen = autos[nRandom()];
+		
 		
 	}
 	
@@ -146,11 +148,16 @@ public class Auto {
 		}
 	}
 	private void convertirAutoEnZanahoria() {
+		
 		if(tocaRayoConversorZanahoria() && rayoConversorZanahoria.getActivo()) {
 			rayoConversorZanahoria.setActivo(false);
-			zanahoria.setX(this.x);
-			zanahoria.setY(this.y);
-			zanahoria.setVisible(true);
+			zanahorias.getZanahorias()[Zanahorias.contZanahorias].setX(this.x);
+			zanahorias.getZanahorias()[Zanahorias.contZanahorias].setY(this.y);
+			zanahorias.getZanahorias()[Zanahorias.contZanahorias].setVisible(true);
+			Zanahorias.contZanahorias++;
+			if(Zanahorias.contZanahorias>=4) {
+				Zanahorias.contZanahorias=0;
+			}
 			this.vida=false;
 		}
 	}

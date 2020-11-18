@@ -9,21 +9,21 @@ public class Trafico {
 	private Conejo conejo;
 	private double velocidad;
 	private Kamehameha kamehameha;
-	private Zanahoria zanahoria;
+	private Zanahorias zanahorias;
 	private RayoConversorZanahoria rayoConversorZanahoria;
-	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,Kamehameha kamehameha,Zanahoria zanahoria,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
+	public Trafico(Entorno entorno,Carretera carretera, Conejo conejo,Kamehameha kamehameha,Zanahorias zanahorias,RayoConversorZanahoria rayoConversorZanahoria,double velocidad) {
 		autos=new Auto[4];
 		this.entorno=entorno;
 		this.carretera=carretera;
 		this.conejo=conejo;
 		this.velocidad=velocidad;
 		this.kamehameha=kamehameha;
-		this.zanahoria=zanahoria;
+		this.zanahorias=zanahorias;
 		this.rayoConversorZanahoria=rayoConversorZanahoria;
 	}
 	private void crearAutos() {
 		for (int i=0;i<autos.length;i++) {
-			Auto auto=new Auto(entorno,carretera,conejo,kamehameha,zanahoria,rayoConversorZanahoria,velocidad);
+			Auto auto=new Auto(entorno,carretera,conejo,kamehameha,zanahorias,rayoConversorZanahoria,velocidad);
 			autos[i]=auto;
 		}
 		
@@ -46,5 +46,8 @@ public class Trafico {
 		for(Auto auto:autos) {
 			auto.iniciarComponentesEnTick();
 		}
+	}
+	public Auto[] getAutos() {
+		return this.autos;
 	}
 }

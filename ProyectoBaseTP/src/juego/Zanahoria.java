@@ -10,7 +10,7 @@ public class Zanahoria {
 	private boolean visible;
 	private Entorno entorno;
 	private Conejo conejo;
-	private Auto auto;
+	
 	private Image zana;
 	
 	public Zanahoria(Entorno entorno, Conejo conejo) {
@@ -21,7 +21,6 @@ public class Zanahoria {
 		this.visible=false;
 		this.entorno=entorno;
 		this.conejo=conejo;
-		this.auto=auto;
 		cargarImagenes();
 		
 	}
