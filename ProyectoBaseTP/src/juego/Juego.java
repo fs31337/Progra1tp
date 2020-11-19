@@ -47,6 +47,8 @@ public class Juego extends InterfaceJuego
 	
 	ZaWarudo zaWarudo;
 	
+	Obstaculos obstaculos;
+	
 	private boolean ganaste,perdiste;
 	public Juego()
 	{
@@ -85,6 +87,8 @@ public class Juego extends InterfaceJuego
 		
 		this.zaWarudo = new ZaWarudo(entorno, conejo, carreteras, trafico, zanahorias);
 		
+		this.obstaculos=new Obstaculos(entorno, conejo,carreteras);
+		
 		this.ganaste=false;
 		this.perdiste=false;
 		
@@ -114,6 +118,7 @@ public class Juego extends InterfaceJuego
 		
 		kamehameha.iniciarComponentesFueraTick();
 		
+		obstaculos.iniciarComponentesFueraTick();
 		
 		
 	}
@@ -142,6 +147,7 @@ public class Juego extends InterfaceJuego
 			autos7.iniciarComponentesEnTick();
 			autos8.iniciarComponentesEnTick();
 			zaWarudo.iniciarComponentesEnTick();
+			obstaculos.iniciarComponentesEnTick();
 			
 		}
 		else if (conejo.getPuntaje()>=40) 

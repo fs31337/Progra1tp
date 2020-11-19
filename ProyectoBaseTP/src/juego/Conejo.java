@@ -52,6 +52,9 @@ public class Conejo {
 			this.puntaje++;
 		}
 	}
+	public void sumarY(double y) {
+		this.y+=y;
+	}
 	public double getX() {
 		return this.x;
 	}
@@ -172,5 +175,32 @@ public class Conejo {
 		entorno.cambiarFont("Arial Black", 20, Color.white);
 		entorno.escribirTexto("Puntos: "+puntaje, 20, 20);
 		entorno.escribirTexto("Saltos: "+saltos, 175, 20);
+	}
+	public void moverseNegativo() {
+		
+			if(entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+				
+				y+=velocidad;
+				//angulo=Herramientas.radianes(270);
+				espera=true;
+				saltos--;
+							
+			}
+			if(entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+				
+				x+=velocidad;
+				//angulo=Herramientas.radianes(180);
+				espera=true;
+				
+			}
+			if(entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
+				this.ultimaImagen=imagender;
+				x-=velocidad;
+				//angulo=Herramientas.radianes(0);
+				espera=true;
+				
+			
+			
+	}
 	}
 }
