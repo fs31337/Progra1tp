@@ -144,7 +144,7 @@ public class Juego extends InterfaceJuego
 			zaWarudo.iniciarComponentesEnTick();
 			
 		}
-		else if (conejo.getPuntaje()>=20) 
+		else if (conejo.getPuntaje()>=40) 
 		{
 			win();
 			//detenerMusica();
@@ -170,7 +170,7 @@ public class Juego extends InterfaceJuego
 		{
 			return true;
 		}
-		if(conejo.getPuntaje()>=20) 
+		if(conejo.getPuntaje()>=40) 
 		{
 			return true;
 		}

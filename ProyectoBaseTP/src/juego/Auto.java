@@ -69,7 +69,9 @@ public class Auto {
 		}
 		autos = new Image[] {auto1,auto2,auto3,auto4,auto5};
 	}
-	
+	public void setVida(boolean vida) {
+		this.vida=vida;
+	}
 	public void iniciarComponentesFueraTick() {
 		setY();
 		setAngulo();
@@ -88,6 +90,12 @@ public class Auto {
 	
 	public void setX(double x) {
 		this.x=x;
+	}
+	public double getY() {
+		return this.y;
+	}
+	public double getX() {
+		return this.x;
 	}
 	private void avanzar() {
 		y=carretera.getY();
