@@ -74,7 +74,7 @@ public class Kamehameha {
 		tiempoActivo.start();
 	}
 	private void tiempoRecarga() {
-		tiempoRecarga=new Timer(3000,new ActionListener() {
+		tiempoRecarga=new Timer(4000,new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +100,8 @@ public class Kamehameha {
 			tiempoActivo();
 			tiempoRecarga();
 			cent=0;
-			seg=2;
+			seg=3;
+			Herramientas.play("./resources/sonido/kamehameha.wav");
 		}
 		if(activo==true) {
 			this.alto+=1.5;

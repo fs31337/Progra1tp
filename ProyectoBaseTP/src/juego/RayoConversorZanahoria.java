@@ -99,6 +99,7 @@ public class RayoConversorZanahoria {
 			tiempoRecarga();
 			cent=0;
 			seg=4;
+			Herramientas.play("./resources/sonido/Rayo_Laser.wav");
 			
 		}
 		if(activo==true) {

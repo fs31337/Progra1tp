@@ -77,6 +77,7 @@ public class Zanahoria {
 		if(tocaConejo()) {
 			conejo.sumarPuntaje(2);
 			this.visible=false;
+			Herramientas.play("./resources/sonido/zanahoria.wav");
 		}
 	}
 	private boolean tocaConejo() {
