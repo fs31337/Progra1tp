@@ -14,13 +14,15 @@ public class Menu extends javax.swing.JFrame {
 	
     public Menu() {
     	iniciarComponentes();
+    	this.setTitle(Juego.TITULO);
+    	this.setSize(685, 650);
         this.setLocationRelativeTo(null);
     }
 
                               
     private void iniciarComponentes() {
 
-        panel = new javax.swing.JPanel();
+    	panel = new javax.swing.JPanel();
         etiquetaTitulo = new javax.swing.JLabel();
         botonIniciarJuego = new javax.swing.JButton();
         botonInstrucciones = new javax.swing.JButton();
@@ -35,18 +37,18 @@ public class Menu extends javax.swing.JFrame {
         etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
         etiquetaTitulo.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetaTitulo.setText("Boss Rabbit Rabber - Grupo ... - V1");
+        etiquetaTitulo.setText("Boss Rabbit - Grupo 6 - V1");
 
-        botonIniciarJuego.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        botonIniciarJuego.setText("Iniciar juego");
+        botonIniciarJuego.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        botonIniciarJuego.setText("INICIAR JUEGO");
         botonIniciarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIniciarJuegoActionPerformed(evt);
             }
         });
 
-        botonInstrucciones.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        botonInstrucciones.setText("Instrucciones");
+        botonInstrucciones.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        botonInstrucciones.setText("INSTRUCCIONES");
         botonInstrucciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonInstruccionesActionPerformed(evt);
@@ -57,24 +59,22 @@ public class Menu extends javax.swing.JFrame {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(181, 181, 181)
+                .addGap(210, 210, 210)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonIniciarJuego)
-                    .addComponent(botonInstrucciones))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonIniciarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonInstrucciones, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(etiquetaTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(128, 128, 128)
                 .addComponent(botonIniciarJuego)
-                .addGap(86, 86, 86)
-                .addComponent(botonInstrucciones)
-                .addGap(130, 130, 130))
+                .addGap(97, 97, 97)
+                .addComponent(botonInstrucciones))
         );
 
         menuOpciones.setText("Opciones");
@@ -88,7 +88,7 @@ public class Menu extends javax.swing.JFrame {
         menuOpciones.add(subMenuSalir);
 
         barraMenu.add(menuOpciones);
-        //barraMenu.setBackground(new java.awt.Color(230,240,240));
+
         setJMenuBar(barraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

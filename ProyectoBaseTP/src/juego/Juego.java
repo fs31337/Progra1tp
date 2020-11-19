@@ -13,15 +13,15 @@ public class Juego extends InterfaceJuego
 {
 	
 	private Entorno entorno;
-	public static final String TITULO ="Boss Rabbit Rabber - Grupo ... - v1";
+	public static final String TITULO ="Boss Rabbit Rabber - Grupo 6 - v1";
 	//Fondo fondo;
 	//Fondo fondo2;
 	Conejo conejo;
-	Carretera carretera1; //mano derecha
+	Carretera carretera1; 
 	Carretera carretera2;
 	Carretera carretera3;
 	Carretera carretera4;
-	Carretera carretera5; //mano izquierda
+	Carretera carretera5; 
 	Carretera carretera6;
 	Carretera carretera7;
 	Carretera carretera8;
