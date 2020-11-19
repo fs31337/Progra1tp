@@ -37,7 +37,7 @@ public class Juego extends InterfaceJuego
 	
 	Kamehameha kamehameha;
 	
-	Clip musica;
+	static Clip musica;
 	
 	Zanahorias zanahorias;
 	RayoConversorZanahoria rayoConversorZanahoria;

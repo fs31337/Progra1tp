@@ -44,6 +44,7 @@ public class ZaWarudo {
 			cent=0;
 			tiempoActivo();
 			Herramientas.play("./resources/sonido/zaWarudo.wav");
+			//Juego.musica.stop();
 			tictac.loop(Clip.LOOP_CONTINUOUSLY);
 			
 		}
@@ -85,6 +86,7 @@ public class ZaWarudo {
 			public void actionPerformed(ActionEvent e) {
 				activo=false;
 				tictac.stop();
+				//Juego.musica.start();
 				tiempoActivo.stop();
 				
 			}
