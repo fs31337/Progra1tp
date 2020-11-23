@@ -1,6 +1,7 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +18,14 @@ public class RayoConversorZanahoria {
 	private Timer tiempoActivo;
 	private Timer tiempoRecarga;
 	private int cent,seg;
+	private Image spell;
+	private Image spell1;
+	private Image spell2;
+	private Image spell3;
+	private Image spell4;
+	private Image[] rayoconversor;
+	
+	
 	
 	
 	public RayoConversorZanahoria(Entorno entorno, Conejo conejo) {
@@ -31,6 +40,7 @@ public class RayoConversorZanahoria {
 		this.recarga=false;
 		this.cent=0;
 		this.seg=0;
+		cargarImagenes();
 		
 	}
 	public double getX() {
@@ -71,6 +81,22 @@ public class RayoConversorZanahoria {
 		});
 		tiempoRecarga.start();
 	}
+	
+	private void cargarImagenes() {
+		try {
+			this.spell = Herramientas.cargarImagen("./resources/spells/conversorzanahoria.png");
+			this.spell1 = Herramientas.cargarImagen("./resources/spells/conversorzanahoria1.png");
+			this.spell2 = Herramientas.cargarImagen("./resources/spells/conversorzanahoria2.png");
+			this.spell3 = Herramientas.cargarImagen("./resources/spells/conversorzanahoria3.png");
+			this.spell4 = Herramientas.cargarImagen("./resources/spells/conversorzanahoria4.png");
+			
+			}		
+		catch (Exception e){
+			e.printStackTrace(System.err);
+		}
+		rayoconversor = new Image[] {spell,spell1,spell2,spell3,spell4};
+	}
+	
 	private void tiempoActivo() {
 		tiempoActivo = new Timer(2000, new ActionListener() {
 			@Override
@@ -84,7 +110,8 @@ public class RayoConversorZanahoria {
 		
 	}
 	private void dibujar() {
-		entorno.dibujarRectangulo(x, y, ancho, alto, Herramientas.radianes(270), Color.yellow);
+		//entorno.dibujarRectangulo(x, y, ancho, alto, Herramientas.radianes(270), Color.yellow);
+		entorno.dibujarImagen(rayoconversor[nRandom()], x, y, 0, 0.04);
 	}
 	private void posicionar() {
 		this.x=conejo.getX();
@@ -118,6 +145,11 @@ public class RayoConversorZanahoria {
 	private void escribirRecarga(int seg) {
 		entorno.cambiarFont("Arial Black", 20, Color.white);
 		entorno.escribirTexto("Recarga Rayo Conversor= "+seg, 490, 40);
+	}
+	
+	private int nRandom() {
+		int numero = (int) (Math.random() * 5);
+		return numero;
 	}
 	
 }

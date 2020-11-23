@@ -131,7 +131,7 @@ public class Auto {
 	
 	private void dibujarse() {
 		//entorno.dibujarTriangulo(x, y, alto, ancho, angulo, Color.green);
-		entorno.dibujarImagen(imagen, x, y, angulo, 0.6);
+		entorno.dibujarImagen(imagen, x, y, angulo, 0.7);
 	}
 	
 	private boolean tocaConejo() {
