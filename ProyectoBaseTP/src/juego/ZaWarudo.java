@@ -12,6 +12,8 @@ import entorno.*;
 public class ZaWarudo {
 	private Entorno entorno;
 	private Conejo conejo;
+	private Fondo fondo;
+	private Fondo fondo2;
 	private Carretera carreteras[];
 	private Trafico trafico[];
 	private Zanahorias zanahorias;
@@ -20,9 +22,11 @@ public class ZaWarudo {
 	private Timer tiempoActivo;
 	private int cent,seg;
 	Clip tictac;
-	public ZaWarudo(Entorno entorno, Conejo conejo, Carretera carreteras[],Trafico trafico[], Zanahorias zanahorias) {
+	public ZaWarudo(Entorno entorno, Conejo conejo, Fondo fondo, Fondo fondo2, Carretera carreteras[],Trafico trafico[], Zanahorias zanahorias) {
 		this.entorno=entorno;
 		this.conejo=conejo;
+		this.fondo=fondo;
+		this.fondo2=fondo2;
 		this.carreteras=carreteras;
 		this.trafico=trafico;
 		this.zanahorias=zanahorias;
@@ -62,6 +66,8 @@ public class ZaWarudo {
 		conejo.moverArriba();
 		detenerCarreteras();
 		detenerTrafico();
+		fondo.detener();
+		fondo2.detener();
 		zanahorias.detenerZanahorias();
 		escribirTiempoActivo();
 	}

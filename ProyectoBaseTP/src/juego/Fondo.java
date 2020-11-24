@@ -48,7 +48,6 @@ public class Fondo {
 	public void setAncho(int ancho) {
 		this.ancho = ancho;
 	}
-	// te agrego un comentario secreto aca mira hola como te va querido
 
 	public int getAlto() {
 		return alto;
@@ -67,7 +66,7 @@ public class Fondo {
 	
 	private void cargarImagenes() {
 		try {
-				this.imagen = Herramientas.cargarImagen("./resources/fondo/street2.png");
+				this.imagen = Herramientas.cargarImagen("./resources/fondo/grass1.png");
 			}		
 		catch (Exception e){
 			e.printStackTrace(System.err);
@@ -75,10 +74,13 @@ public class Fondo {
 	}
 
 	private void dibujarFondo() {	
-		entorno.dibujarImagen(imagen, x, y, 0, 0.6);
+		entorno.dibujarImagen(imagen, x, y, 0, 1);
 	}
 	private void avanzar() {
 		y+=0.2;
+	}
+	public void detener() {
+		y-=0.2;
 	}
 	private void reiniciar() {
 		if(y>entorno.alto()+50) {
