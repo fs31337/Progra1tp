@@ -66,7 +66,7 @@ public class Fondo {
 	
 	private void cargarImagenes() {
 		try {
-				this.imagen = Herramientas.cargarImagen("./resources/fondo/grass1.png");
+				this.imagen = Herramientas.cargarImagen("./resources/fondo/pasto1.png");
 			}		
 		catch (Exception e){
 			e.printStackTrace(System.err);
@@ -74,7 +74,7 @@ public class Fondo {
 	}
 
 	private void dibujarFondo() {	
-		entorno.dibujarImagen(imagen, x, y, 0, 1);
+		entorno.dibujarImagen(imagen, x, y, 0, 1.5);
 	}
 	private void avanzar() {
 		y+=0.2;
@@ -83,8 +83,8 @@ public class Fondo {
 		y-=0.2;
 	}
 	private void reiniciar() {
-		if(y>entorno.alto()+50) {
-			y=0;
+		if(y>entorno.alto()-150) {
+			y=400;
 		}
 	}
 }

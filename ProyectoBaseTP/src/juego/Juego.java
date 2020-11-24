@@ -15,7 +15,6 @@ public class Juego extends InterfaceJuego
 	private Entorno entorno;
 	public static final String TITULO ="Boss Rabbit Rabber - Grupo 6 - v1";
 	Fondo fondo;
-	Fondo fondo2;
 	
 	Conejo conejo;
 	Carretera carretera1; 
@@ -55,8 +54,8 @@ public class Juego extends InterfaceJuego
 	{
 		
 		this.entorno = new Entorno(this, TITULO, 800, 600);
-		this.fondo = new Fondo(entorno,170);
-		this.fondo2 = new Fondo(entorno,533);
+		this.fondo = new Fondo(entorno,400);
+		
 		this.conejo = new Conejo(entorno);
 		this.carretera1= new Carretera(entorno,Sentido.DERECHA,-95,0); //Se crea una carretera, la cual pide un sentido y una posicion
 		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,-35,1);
@@ -86,7 +85,7 @@ public class Juego extends InterfaceJuego
 		this.carreteras = new Carretera[] {carretera1,carretera2,carretera3,carretera4,carretera5,carretera6,carretera7,carretera8};
 		this.trafico = new Trafico[] {autos1,autos2,autos3,autos4,autos5,autos6,autos7,autos8};
 		
-		this.zaWarudo = new ZaWarudo(entorno, conejo, fondo, fondo2, carreteras, trafico, zanahorias);
+		this.zaWarudo = new ZaWarudo(entorno, conejo, fondo, carreteras, trafico, zanahorias);
 		
 		this.obstaculos=new Obstaculos(entorno, conejo,carreteras);
 		
@@ -125,7 +124,6 @@ public class Juego extends InterfaceJuego
 	}
 	private void juegoActivoTick() {
 		if(!juegoTerminado()) {
-			fondo2.iniciarComponentesEnTick();
 			fondo.iniciarComponentesEnTick();
 			carretera1.iniciarComponentesEnTick();
 			carretera2.iniciarComponentesEnTick();

@@ -1,5 +1,10 @@
 package menu;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import juego.*;
 
 public class Menu extends javax.swing.JFrame {
@@ -8,6 +13,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton botonIniciarJuego;
     private javax.swing.JButton botonInstrucciones;
     private javax.swing.JLabel etiquetaTitulo;
+    
+    private javax.swing.JLabel imagenfondo;
     private javax.swing.JMenu menuOpciones;
     private javax.swing.JPanel panel;
     private javax.swing.JMenuItem subMenuSalir;
@@ -17,13 +24,17 @@ public class Menu extends javax.swing.JFrame {
     	this.setTitle(Juego.TITULO);
     	this.setSize(685, 650);
         this.setLocationRelativeTo(null);
+        
     }
 
                               
     private void iniciarComponentes() {
-
+    	ImageIcon imagen = new ImageIcon ("./resources/fondo/fondopp.png");
     	panel = new javax.swing.JPanel();
         etiquetaTitulo = new javax.swing.JLabel();
+        
+        imagenfondo = new javax.swing.JLabel(new ImageIcon (imagen.getImage().getScaledInstance(685,650,Image.SCALE_SMOOTH)));
+        
         botonIniciarJuego = new javax.swing.JButton();
         botonInstrucciones = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
@@ -32,12 +43,12 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panel.setBackground(new java.awt.Color(0, 0, 0));
+        panel.setBackground(new java.awt.Color(0, 0, 0));            
 
         etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); 
         etiquetaTitulo.setForeground(new java.awt.Color(255, 255, 255));
         etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetaTitulo.setText("Boss Rabbit - Grupo 6 - V1");
+        etiquetaTitulo.setText("Boss Rabbit - Grupo 6 - V1");      
 
         botonIniciarJuego.setFont(new java.awt.Font("Arial Black", 0, 24)); 
         botonIniciarJuego.setText("INICIAR JUEGO");
