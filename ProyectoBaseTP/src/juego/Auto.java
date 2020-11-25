@@ -142,7 +142,8 @@ public class Auto {
 	}
 	private void matarConejo() {
 		if(tocaConejo()) {
-			conejo.setVida(false);
+			//conejo.setVida(false);
+			conejo = null;
 		}
 	}
 	private boolean tocaKamehameha() {

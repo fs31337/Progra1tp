@@ -17,6 +17,8 @@ public class Juego extends InterfaceJuego
 	Fondo fondo;
 	
 	Conejo conejo;
+	int puntaje,saltos;
+	
 	Carretera carretera1; 
 	Carretera carretera2;
 	Carretera carretera3;
@@ -53,10 +55,13 @@ public class Juego extends InterfaceJuego
 	public Juego()
 	{
 		
+		
 		this.entorno = new Entorno(this, TITULO, 800, 600);
 		this.fondo = new Fondo(entorno,400);
 		
-		this.conejo = new Conejo(entorno);
+		this.conejo = new Conejo();
+		this.puntaje =0; this.saltos=0;
+		
 		this.carretera1= new Carretera(entorno,Sentido.DERECHA,-95,0); //Se crea una carretera, la cual pide un sentido y una posicion
 		this.carretera2= new Carretera(entorno,Sentido.IZQUIERDA,-35,1);
 		this.carretera3= new Carretera(entorno,Sentido.DERECHA,33,2);
@@ -95,6 +100,8 @@ public class Juego extends InterfaceJuego
 		juegoActivoFueraTick();
 		//reproducirMusica();
 		
+		establecerPosConejo();
+		
 		this.entorno.iniciar();
 	}
 	
@@ -103,9 +110,9 @@ public class Juego extends InterfaceJuego
 		juegoActivoTick();
 
 	}
+	
 	private void juegoActivoFueraTick() 
-	{
-		conejo.inicarComponentesFueraTick();
+	{		
 		zanahorias.iniciarComponentesFueraTick();
 		autos1.iniciarComponentesFueraTick(); 
 		autos2.iniciarComponentesFueraTick();
@@ -116,7 +123,7 @@ public class Juego extends InterfaceJuego
 		autos7.iniciarComponentesFueraTick();
 		autos8.iniciarComponentesFueraTick();
 		
-		kamehameha.iniciarComponentesFueraTick();
+		//kamehameha.iniciarComponentesFueraTick();//Crear en conejo
 		
 		obstaculos.iniciarComponentesFueraTick();
 		
@@ -132,8 +139,15 @@ public class Juego extends InterfaceJuego
 			carretera5.iniciarComponentesEnTick();
 			carretera6.iniciarComponentesEnTick();
 			carretera7.iniciarComponentesEnTick();
-			carretera8.iniciarComponentesEnTick();			
-			conejo.iniciarComponentesEnTick();
+			carretera8.iniciarComponentesEnTick();	
+			
+			//conejo.iniciarComponentesEnTick();			
+			conejo.dibujarse(this.entorno);
+			movimientoConejo();
+			moverAbajoConejo();
+			tocaLimiteConejo();
+			mostrarPuntaje();			
+			
 			kamehameha.iniciarComponentesEnTick();
 			zanahorias.iniciarComponentesEnTick();
 			rayoConversorZanahoria.iniciarComponentesEnTick();
@@ -149,12 +163,12 @@ public class Juego extends InterfaceJuego
 			obstaculos.iniciarComponentesEnTick();
 			
 		}
-		else if (conejo.getPuntaje()>=40) 
+		else if (puntaje>=40) 
 		{
 			win();
 			//detenerMusica();
 		}
-		else if (!conejo.getVida()){
+		else if (conejo == null){
 			gameOver();
 			//detenerMusica();
 		}
@@ -171,11 +185,11 @@ public class Juego extends InterfaceJuego
 	
 	private boolean juegoTerminado() 
 	{
-		if(!conejo.getVida())
+		if(conejo == null)
 		{
 			return true;
 		}
-		if(conejo.getPuntaje()>=40) 
+		if(puntaje>=40) 
 		{
 			return true;
 		}
@@ -210,5 +224,76 @@ public class Juego extends InterfaceJuego
 			new Juego();
 		}
 	}
+	
+										//Metodos Conejo
+	
+	public void establecerPosConejo() {
+		conejo.x=entorno.ancho()/2;
+		conejo.y=(entorno.alto()/2)+200;
+	}	
+	public void movimientoConejo(){
+		if(entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+			conejo.saltar();
+			saltos++;
+			sumarPuntaje();
+			reproducirSonidoSalto();		
+		}
+		if(entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+			conejo.moverIzq();
+			reproducirSonidoSalto();	
+		}
+		if(entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
+			conejo.moverDer();
+			reproducirSonidoSalto();	
+		}		
+	}
+	
+	public void moverAbajoConejo() {
+		conejo.y+=0.2;
+	}
+	
+	public void tocaLimiteConejo() {
+		if(conejo.y>entorno.alto()+30) {
+			conejo=null; //this.vida=false; // Cambiar conejo a null, terminar el juego
+		}
+		if(conejo.x<0) {
+			conejo.x+=conejo.velocidad;
+		}
+		if(conejo.x>entorno.ancho()) {
+			conejo.x-=conejo.velocidad;
+		}
+		if(conejo.y<100) {
+			conejo.y+=conejo.velocidad;
+		}
+	}
+	
+	public void mostrarPuntaje() {
+		entorno.cambiarFont("Arial Black", 20, Color.white);
+		entorno.escribirTexto("Puntos: "+puntaje, 20, 20);
+		entorno.escribirTexto("Saltos: "+saltos, 175, 20);
+	}
+	public void sumarPuntaje(int puntaje) {
+		this.puntaje+=puntaje;
+	}
+	public void sumarPuntaje() {
+		if(conejo.y>100) {
+			this.puntaje++;
+		}
+	}	
+	
+	public void reproducirSonidoSalto() {
+		Herramientas.play("./resources/sonido/jump.wav");
+	}
+	
+	
+	
+	
+	/* quitado para iniciar desde menu
+	 * @SuppressWarnings("unused")
+	public static void main(String[] args)
+	{
+		Juego juego = new Juego();
+		
+	}*/
 	
 }

@@ -17,10 +17,10 @@ public class Kamehameha {
 	private Conejo conejo;
 	private int usos;
 	private Timer tiempoActivo;
-	private Timer tiempoRecarga;
-	
+	private Timer tiempoRecarga;	
 	private int cent;
 	private int seg;
+	
 	public Kamehameha(Entorno entorno,Conejo conejo) {
 		this.entorno=entorno;
 		this.x=0;
@@ -54,7 +54,6 @@ public class Kamehameha {
 	}
 	
 	public void iniciarComponentesFueraTick() {
-		
 	}
 	public void iniciarComponentesEnTick() {
 			activar();
