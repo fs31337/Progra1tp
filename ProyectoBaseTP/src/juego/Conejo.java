@@ -2,92 +2,84 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.TimerTask;
-
-import javax.swing.Timer;
 
 import entorno.*;
 
 public class Conejo {
-	public double x,y; //quitar angulo
-	public int ancho,alto,velocidad;//quito saltos y puntaje;
-	public Image imagenarr;
-	public Image imagenizq;
-	public Image imagender;
-	public Image ultimaImagen;
+	private double x,y,ancho,alto,velocidad;
+	private Image imagen;
 	
 	public Conejo() {
-		this.ancho=20;
-		this.alto=20;
-		this.velocidad=40;	
-		cargarImagenes();
-	}
-	private void cargarImagenes() {
-		try {
-			this.imagenarr = Herramientas.cargarImagen("./resources/conejo/conejoarr.png");
-			this.imagenizq = Herramientas.cargarImagen("./resources/conejo/conejoizq.png");
-			this.imagender = Herramientas.cargarImagen("./resources/conejo/conejoder.png");
-			this.ultimaImagen=imagenarr;
-			}
-		catch (Exception e){
-			e.printStackTrace(System.err);
-		}	
-	}	
-	
-
-	/*public void inicarComponentesFueraTick() {
-		establecerPos();
-		}
-	}*/	
-	
-	
-	public void dibujarse(Entorno entorno) {
-		  entorno.dibujarImagen(ultimaImagen, x, y, 0, 1.5);		
-		}
-
-	public void saltar() {
-		this.ultimaImagen=imagenarr;
-		y-=velocidad;
-		}
-	
-	public void moverIzq() {
-		this.ultimaImagen=imagenizq;
-		x-=velocidad;
-		}
-	
-	public void moverDer() {
-		this.ultimaImagen=imagender;
-		x+=velocidad;
-		}
-			
-	
-	}
-
-	/*public void moverseNegativo() {
+		this.x=0;
+		this.y=0;
+		this.ancho=30;
+		this.alto=30;
+		this.velocidad=40;
+		imagenInicial();
 		
-			if(entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-				
-				y+=velocidad;
-				espera=true;
-				saltos--;
-							
-			}
-			if(entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-				
-				x+=velocidad;
-				espera=true;
-				
-			}
-			if(entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-				this.ultimaImagen=imagender;
-				x-=velocidad;
-				espera=true;
-				
-			
-			
 	}
-	}*/
-
-
+	//Getters {
+	public double getX() {
+		return this.x;
+	}
+	public double getY() {
+		return this.y;
+	}
+	public double getAncho() {
+		return this.ancho;
+	}
+	public double getAlto() {
+		return this.alto;
+	}
+	public double getVelocidad() {
+		return this.velocidad;
+	}
+	// } Getters
+	
+	// Setters {
+	public void setX(double x) {
+		this.x=x;
+	}
+	public void setY(double y) {
+		this.y=y;
+	}
+	public void setAncho(double ancho) {
+		this.ancho=ancho;
+	}
+	public void setAlto(double alto) {
+		this.alto=alto;
+	}
+	// } Setters
+	private void imagenInicial() {
+		imagen=Herramientas.cargarImagen("./resources/conejo/conejoarr.png");
+	}
+	
+	public void dibujar(Entorno entorno) {
+		entorno.dibujarImagen(imagen, x, y, 0);
+	}
+	public void moverseArriba() {
+		y-=velocidad;
+		imagen=Herramientas.cargarImagen("./resources/conejo/conejoarr.png");
+	}
+	
+	public void moverseIzquierda() {
+		x-=velocidad;
+		imagen=Herramientas.cargarImagen("./resources/conejo/conejoizq.png");
+	}
+	public void moverseDerecha() {
+		x+=velocidad;
+		imagen=Herramientas.cargarImagen("./resources/conejo/conejoder.png");
+	}
+	public void avanzar() {
+		this.y+=0.2;
+	}
+	
+	public Kamehameha dispararKamehameha() {
+		Kamehameha kamehameha = new Kamehameha();
+		return kamehameha;
+	}
+	public RayoConversorZanahoria disparararRayoConversor() {
+		RayoConversorZanahoria rayoConversorZanahoria = new RayoConversorZanahoria();
+		return rayoConversorZanahoria;
+	}
+}

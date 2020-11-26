@@ -1,41 +1,22 @@
 package juego;
 
-import entorno.*;
+import java.util.ArrayList;
+
+import entorno.Entorno;
 
 public class Zanahorias {
-	private Entorno entorno;
-	private Conejo conejo;
-	private Zanahoria zanahorias[];
-	public static int contZanahorias=0;
-	public Zanahorias(Entorno entorno, Conejo conejo) {
-		this.zanahorias=new Zanahoria[5]; //No cambiar cantidad
-		this.entorno=entorno;
-		this.conejo=conejo;
-		
+	ArrayList<Zanahoria>zanahorias;
+	public Zanahorias() {
+		zanahorias=new ArrayList<Zanahoria>();
 	}
-	private void crearZanahorias() {
-		for(int i=0;i<zanahorias.length;i++) {
-			Zanahoria zanahoria=new Zanahoria(entorno,conejo);
-			zanahorias[i]=zanahoria;
-		}
-		
-	}
-	public void iniciarComponentesEnTick() {
-		
-		for(Zanahoria zanahoria:zanahorias) {
-			zanahoria.iniciarComponentesEnTick();
+	public void dibujar(Entorno entorno) {
+		for(Zanahoria zanahoria: zanahorias) {
+			zanahoria.dibujar(entorno);
 		}
 	}
-	public void iniciarComponentesFueraTick() {
-		crearZanahorias();
-	}
-	public Zanahoria[] getZanahorias() {
-		return this.zanahorias;
-	}
-	public void detenerZanahorias() {
-		for(Zanahoria zanahoria:zanahorias) {
-			zanahoria.detener();
+	public void avanzar() {
+		for(Zanahoria zanahoria: zanahorias) {
+			zanahoria.avanzar();
 		}
 	}
-	
 }
